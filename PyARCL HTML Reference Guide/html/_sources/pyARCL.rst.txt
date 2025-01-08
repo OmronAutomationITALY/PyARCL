@@ -1,0 +1,8 @@
+PyARCL module
+=============
+
+.. automodule:: PyARCL
+   :members:
+   :inherited-members: dict, Thread
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,8 @@
+AMRSimTools module
+==================
+
+.. automodule:: AMRSimTools
+   :members:
+   :inherited-members: dict, Thread
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AMRSimTools &mdash; PyARCL 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PyARCL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">PyARCL</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyARCL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">AMRSimTools</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for AMRSimTools</h1><div class="highlight"><pre>
+<span></span><span class="c1">#%% Imports</span>
+
+<span class="kn">import</span> <span class="nn">threading</span> <span class="k">as</span> <span class="nn">td</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1">#%% Functions Definiton</span>
+
+<div class="viewcode-block" id="program"><a class="viewcode-back" href="../AMRSimTools.html#AMRSimTools.program">[docs]</a><span class="k">def</span> <span class="nf">program</span><span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">repeatTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">arguments</span> <span class="o">=</span> <span class="p">()):</span>
+    <span class="sd">&quot;&quot;&quot;Function that is used to ease the multithreading process.</span>
+
+<span class="sd">    Function that allows easy handling of multithreading requests for multiple functions.</span>
+<span class="sd">    This could be used to easily send missions in a parallel way or multithreads that</span>
+<span class="sd">    perform checks to the Robots state and / or store queue information.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        main (:py:func:`function`): Function preferably with no arguments that will be used to start the</span>
+<span class="sd">            multithreading process. If a repeat time is not specified, this function will need to </span>
+<span class="sd">            contain the main event loop or the sequence of actions will end after the function completition.</span>
+
+<span class="sd">        repeatTime (:py:class:`int`): If this positive value is specified, then the main function will be</span>
+<span class="sd">            instanced over and over with a time interval equal to the number of seconds specified.</span>
+<span class="sd">            This can be used to circumvent the event loop in case where the takt time is not fixed but the</span>
+<span class="sd">            events still need to start occurring at a specified pace.</span>
+<span class="sd">        </span>
+<span class="sd">        arguments (:py:class:`tuple`): Tuple containing the arguments of the main function in case it wasn&#39;t</span>
+<span class="sd">            a no-argument function. To use with care.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">repeatTime</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">repeat</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">repeat</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">if</span> <span class="n">repeat</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">missionLauncher</span><span class="p">():</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">td</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">main</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">arguments</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">repeatTime</span><span class="p">)</span>
+
+        <span class="n">td</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">missionLauncher</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">main</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">arguments</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="wait"><a class="viewcode-back" href="../AMRSimTools.html#AMRSimTools.wait">[docs]</a><span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="n">secs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function that is used to make the system wait for a specified number of seconds.</span>
+<span class="sd">    Wraps around time.sleep</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">secs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="waitForJob"><a class="viewcode-back" href="../AMRSimTools.html#AMRSimTools.waitForJob">[docs]</a><span class="k">def</span> <span class="nf">waitForJob</span><span class="p">(</span><span class="n">job</span><span class="p">,</span> <span class="n">interval</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function that is used to make the system wait until the specified :py:class:`~AMRBase.Job` object is completed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">goFlag</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">iscomplete</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Object handed is not a Job class&#39;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">goFlag</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">wait</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="waitForInput"><a class="viewcode-back" href="../AMRSimTools.html#AMRSimTools.waitForInput">[docs]</a><span class="k">def</span> <span class="nf">waitForInput</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">inputName</span><span class="p">,</span> <span class="n">interval</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function that is used to make the system wait until the Robot&#39;s :py:meth:`~AMRBase.Robot.inputs` method says that the specified input is on.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">goFlag</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">inputName</span><span class="p">]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Object handed is not a Robot class or input name does not exists&#39;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">goFlag</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">wait</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="waitForJobState"><a class="viewcode-back" href="../AMRSimTools.html#AMRSimTools.waitForJobState">[docs]</a><span class="k">def</span> <span class="nf">waitForJobState</span><span class="p">(</span><span class="n">job</span><span class="p">,</span> <span class="n">desiredState</span><span class="p">,</span> <span class="n">jobSegmentNumber</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">interval</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function that is used to make the system wait until the specified :py:class:`~AMRBase.Job`&#39;s :py:class:`~AMRBase.JobSegment` object reaches the desired state.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">jobSegments</span><span class="p">[</span><span class="n">job</span><span class="o">.</span><span class="n">idList</span><span class="p">[</span><span class="n">jobSegmentNumber</span><span class="p">]]</span><span class="o">.</span><span class="n">state</span>
+        <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">desiredState</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">wait</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="randomNumber"><a class="viewcode-back" href="../AMRSimTools.html#AMRSimTools.randomNumber">[docs]</a><span class="k">def</span> <span class="nf">randomNumber</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function that is used to get a random number between two extremes.</span>
+<span class="sd">    Wraps around random.randomint</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">)</span></div>
+
+<span class="c1">#%%</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Marco Zangrandi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

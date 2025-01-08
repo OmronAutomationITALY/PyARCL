@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AMRFrontEnds module &mdash; PyARCL 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="AMRSimTools module" href="AMRSimTools.html" />
+    <link rel="prev" title="AMRBase module" href="AMRBase.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PyARCL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">PyARCL</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="AMRBase.html">AMRBase module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">AMRFrontEnds module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#AMRFrontEnds.FleetStatsGUI"><code class="docutils literal notranslate"><span class="pre">FleetStatsGUI</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#AMRFrontEnds.FleetStatsGUI.FM"><code class="docutils literal notranslate"><span class="pre">FleetStatsGUI.FM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#AMRFrontEnds.FleetStatsGUI.delta_t"><code class="docutils literal notranslate"><span class="pre">FleetStatsGUI.delta_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#AMRFrontEnds.FleetStatsGUI.reset_trip"><code class="docutils literal notranslate"><span class="pre">FleetStatsGUI.reset_trip</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#AMRFrontEnds.FleetStatsGUI.animate1"><code class="docutils literal notranslate"><span class="pre">FleetStatsGUI.animate1()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#AMRFrontEnds.FleetStatsGUI.animate2"><code class="docutils literal notranslate"><span class="pre">FleetStatsGUI.animate2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#AMRFrontEnds.FleetStatsGUI.animate3"><code class="docutils literal notranslate"><span class="pre">FleetStatsGUI.animate3()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#AMRFrontEnds.FleetStatsGUI.createwindow"><code class="docutils literal notranslate"><span class="pre">FleetStatsGUI.createwindow()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#AMRFrontEnds.FleetStatsGUI.on_closing"><code class="docutils literal notranslate"><span class="pre">FleetStatsGUI.on_closing()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#AMRFrontEnds.FleetStatsGUI.pause_plot"><code class="docutils literal notranslate"><span class="pre">FleetStatsGUI.pause_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#AMRFrontEnds.FleetStatsGUI.reset"><code class="docutils literal notranslate"><span class="pre">FleetStatsGUI.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#AMRFrontEnds.FleetStatsGUI.reset_data"><code class="docutils literal notranslate"><span class="pre">FleetStatsGUI.reset_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#AMRFrontEnds.FleetStatsGUI.update_datastores"><code class="docutils literal notranslate"><span class="pre">FleetStatsGUI.update_datastores()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#AMRFrontEnds.prepare_plot"><code class="docutils literal notranslate"><span class="pre">prepare_plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="AMRSimTools.html">AMRSimTools module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyARCL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">PyARCL</a></li>
+      <li class="breadcrumb-item active">AMRFrontEnds module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/AMRFrontEnds.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-AMRFrontEnds">
+<span id="amrfrontends-module"></span><h1>AMRFrontEnds module<a class="headerlink" href="#module-AMRFrontEnds" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="AMRFrontEnds.FleetStatsGUI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AMRFrontEnds.</span></span><span class="sig-name descname"><span class="pre">FleetStatsGUI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FM</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reset_trip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AMRFrontEnds.html#FleetStatsGUI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AMRFrontEnds.FleetStatsGUI" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to be used to generate a Fleet Dashboard.</p>
+<p>Class used to generate a Fleet Dashboard. The dashboard will contain
+three <code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.plt</span></code> plots, one being a pie chart of the robot states,
+and two being a real-time plots of the robot states and job queue.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AMRFrontEnds.FleetStatsGUI.FM">
+<span class="sig-name descname"><span class="pre">FM</span></span><a class="headerlink" href="#AMRFrontEnds.FleetStatsGUI.FM" title="Permalink to this definition"></a></dt>
+<dd><p>The <a class="reference internal" href="AMRBase.html#AMRBase.FleetManager" title="AMRBase.FleetManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">FleetManager</span></code></a> object
+that hold the robot to which statistics will be calculated</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="AMRBase.html#AMRBase.FleetManager" title="AMRBase.FleetManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">FleetManager</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AMRFrontEnds.FleetStatsGUI.delta_t">
+<span class="sig-name descname"><span class="pre">delta_t</span></span><a class="headerlink" href="#AMRFrontEnds.FleetStatsGUI.delta_t" title="Permalink to this definition"></a></dt>
+<dd><p>The time interval in seconds at which refresh the data and update the plots.
+<strong>Default</strong>: 20 [s]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AMRFrontEnds.FleetStatsGUI.reset_trip">
+<span class="sig-name descname"><span class="pre">reset_trip</span></span><a class="headerlink" href="#AMRFrontEnds.FleetStatsGUI.reset_trip" title="Permalink to this definition"></a></dt>
+<dd><p>Parameter that controls whether or not to run the (<code class="xref py py-meth docutils literal notranslate"><span class="pre">resetTrip()</span></code>) method
+before starting to plot the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AMRFrontEnds.FleetStatsGUI.animate1">
+<span class="sig-name descname"><span class="pre">animate1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AMRFrontEnds.html#FleetStatsGUI.animate1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AMRFrontEnds.FleetStatsGUI.animate1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AMRFrontEnds.FleetStatsGUI.animate2">
+<span class="sig-name descname"><span class="pre">animate2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AMRFrontEnds.html#FleetStatsGUI.animate2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AMRFrontEnds.FleetStatsGUI.animate2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AMRFrontEnds.FleetStatsGUI.animate3">
+<span class="sig-name descname"><span class="pre">animate3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AMRFrontEnds.html#FleetStatsGUI.animate3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AMRFrontEnds.FleetStatsGUI.animate3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AMRFrontEnds.FleetStatsGUI.createwindow">
+<span class="sig-name descname"><span class="pre">createwindow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AMRFrontEnds.html#FleetStatsGUI.createwindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AMRFrontEnds.FleetStatsGUI.createwindow" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AMRFrontEnds.FleetStatsGUI.on_closing">
+<span class="sig-name descname"><span class="pre">on_closing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AMRFrontEnds.html#FleetStatsGUI.on_closing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AMRFrontEnds.FleetStatsGUI.on_closing" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AMRFrontEnds.FleetStatsGUI.pause_plot">
+<span class="sig-name descname"><span class="pre">pause_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AMRFrontEnds.html#FleetStatsGUI.pause_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AMRFrontEnds.FleetStatsGUI.pause_plot" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AMRFrontEnds.FleetStatsGUI.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AMRFrontEnds.html#FleetStatsGUI.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AMRFrontEnds.FleetStatsGUI.reset" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AMRFrontEnds.FleetStatsGUI.reset_data">
+<span class="sig-name descname"><span class="pre">reset_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AMRFrontEnds.html#FleetStatsGUI.reset_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AMRFrontEnds.FleetStatsGUI.reset_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AMRFrontEnds.FleetStatsGUI.update_datastores">
+<span class="sig-name descname"><span class="pre">update_datastores</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AMRFrontEnds.html#FleetStatsGUI.update_datastores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AMRFrontEnds.FleetStatsGUI.update_datastores" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AMRFrontEnds.prepare_plot">
+<span class="sig-prename descclassname"><span class="pre">AMRFrontEnds.</span></span><span class="sig-name descname"><span class="pre">prepare_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimensions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hide_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AMRFrontEnds.html#prepare_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AMRFrontEnds.prepare_plot" title="Permalink to this definition"></a></dt>
+<dd><p>Function that prepares an empty <code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.plt</span></code> plot figure.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="AMRBase.html" class="btn btn-neutral float-left" title="AMRBase module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="AMRSimTools.html" class="btn btn-neutral float-right" title="AMRSimTools module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Marco Zangrandi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

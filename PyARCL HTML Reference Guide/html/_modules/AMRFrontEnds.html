@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AMRFrontEnds &mdash; PyARCL 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PyARCL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">PyARCL</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyARCL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">AMRFrontEnds</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for AMRFrontEnds</h1><div class="highlight"><pre>
+<span></span><span class="c1">#%% Imports</span>
+
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib.backends.backend_tkagg</span> <span class="kn">import</span> <span class="n">FigureCanvasTkAgg</span><span class="p">,</span> <span class="n">NavigationToolbar2Tk</span>
+<span class="kn">from</span> <span class="nn">matplotlib.figure</span> <span class="kn">import</span> <span class="n">Figure</span>
+<span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="nn">mdates</span>
+<span class="kn">import</span> <span class="nn">matplotlib.animation</span> <span class="k">as</span> <span class="nn">animation</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">MaxNLocator</span>
+
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">from</span> <span class="nn">AMRBase</span> <span class="kn">import</span> <span class="n">FleetManager</span>
+
+<span class="c1">#%% Constant Data</span>
+
+<span class="n">RST_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;DDT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PDT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;AT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;BT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PedT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;FDT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DedT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;FDedT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;IFT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;IET&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+<span class="n">RST_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;DDT&#39;</span><span class="p">:</span> <span class="s1">&#39;TripAggDropOffDrivingTime&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PDT&#39;</span><span class="p">:</span> <span class="s1">&#39;TripAggPickupDrivingTime&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;AT&#39;</span><span class="p">:</span> <span class="s1">&#39;TripAggAfterTime&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;BT&#39;</span><span class="p">:</span> <span class="s1">&#39;TripAggBufferedTime&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PT&#39;</span><span class="p">:</span> <span class="s1">&#39;TripAggParkingTime&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PedT&#39;</span><span class="p">:</span> <span class="s1">&#39;TripAggParkedTime&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DT&#39;</span><span class="p">:</span> <span class="s1">&#39;TripAggDockingTime&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;FDT&#39;</span><span class="p">:</span> <span class="s1">&#39;TripAggForceDockingTime&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DedT&#39;</span><span class="p">:</span> <span class="s1">&#39;TripAggDockedTime&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;FDedT&#39;</span><span class="p">:</span> <span class="s1">&#39;TripAggForceDockedTime&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;IFT&#39;</span><span class="p">:</span> <span class="s1">&#39;TripAggInFaultTime&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;IET&#39;</span><span class="p">:</span> <span class="s1">&#39;TripAggInEstopTime&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+<span class="n">RST_colors</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;PDT&#39;</span><span class="p">:</span> <span class="s1">&#39;#00BFFF&#39;</span><span class="p">,</span> <span class="c1"># Pickup Driving</span>
+    <span class="s1">&#39;DDT&#39;</span><span class="p">:</span> <span class="s1">&#39;#1E90FF&#39;</span><span class="p">,</span> <span class="c1"># Dropoff Driving</span>
+    <span class="s1">&#39;BT&#39;</span><span class="p">:</span> <span class="s1">&#39;#0000CD&#39;</span><span class="p">,</span> <span class="c1"># Buffered</span>
+    <span class="s1">&#39;AT&#39;</span><span class="p">:</span> <span class="s1">&#39;#4169E1&#39;</span><span class="p">,</span> <span class="c1"># In After</span>
+    <span class="s1">&#39;PT&#39;</span><span class="p">:</span> <span class="s1">&#39;#32CD32&#39;</span><span class="p">,</span> <span class="c1"># Parking</span>
+    <span class="s1">&#39;PedT&#39;</span><span class="p">:</span> <span class="s1">&#39;#228B22&#39;</span><span class="p">,</span> <span class="c1"># Parked</span>
+    <span class="s1">&#39;DT&#39;</span><span class="p">:</span> <span class="s1">&#39;#FFFF00&#39;</span><span class="p">,</span> <span class="c1"># Docking</span>
+    <span class="s1">&#39;DedT&#39;</span><span class="p">:</span> <span class="s1">&#39;#FFD700&#39;</span><span class="p">,</span> <span class="c1"># Docked</span>
+    <span class="s1">&#39;FDT&#39;</span><span class="p">:</span> <span class="s1">&#39;#C0C0C0&#39;</span><span class="p">,</span> <span class="c1"># Force Docking</span>
+    <span class="s1">&#39;FDedT&#39;</span><span class="p">:</span> <span class="s1">&#39;#808080&#39;</span><span class="p">,</span> <span class="c1"># Force Docked</span>
+    <span class="s1">&#39;IFT&#39;</span><span class="p">:</span> <span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="c1"># In Fault</span>
+    <span class="s1">&#39;IET&#39;</span><span class="p">:</span> <span class="s1">&#39;#8B0000&#39;</span><span class="p">,</span> <span class="c1"># In EStop</span>
+    <span class="p">}</span>
+
+<span class="n">RST_labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;PDT&#39;</span><span class="p">:</span> <span class="s1">&#39;Pickup Driving&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DDT&#39;</span><span class="p">:</span> <span class="s1">&#39;Dropoff Driving&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;BT&#39;</span><span class="p">:</span> <span class="s1">&#39;Buffered&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;AT&#39;</span><span class="p">:</span> <span class="s1">&#39;In After&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PT&#39;</span><span class="p">:</span> <span class="s1">&#39;Parking&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PedT&#39;</span><span class="p">:</span> <span class="s1">&#39;Parked&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DT&#39;</span><span class="p">:</span> <span class="s1">&#39;Docking&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DedT&#39;</span><span class="p">:</span> <span class="s1">&#39;Docked&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;FDT&#39;</span><span class="p">:</span> <span class="s1">&#39;Force Docking&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;FDedT&#39;</span><span class="p">:</span> <span class="s1">&#39;Force Docked&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;IFT&#39;</span><span class="p">:</span> <span class="s1">&#39;In Fault&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;IET&#39;</span><span class="p">:</span> <span class="s1">&#39;In EStop&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">RST_altcolors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#68CEF6&#39;</span><span class="p">,</span> <span class="s1">&#39;#32A429&#39;</span><span class="p">,</span> <span class="s1">&#39;#EFC050&#39;</span><span class="p">,</span> <span class="s1">&#39;#DD4124&#39;</span><span class="p">]</span> <span class="c1"># Blue Green Yellow Red</span>
+
+
+<span class="n">FRI_colors</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;RA&#39;</span><span class="p">:</span> <span class="s1">&#39;#00D200&#39;</span><span class="p">,</span> <span class="c1"># Robots Available</span>
+    <span class="s1">&#39;RIP&#39;</span><span class="p">:</span> <span class="s1">&#39;#0096FF&#39;</span><span class="p">,</span> <span class="c1"># Robots In Progress</span>
+    <span class="s1">&#39;RUA&#39;</span><span class="p">:</span> <span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="c1"># Robots Unavailable</span>
+<span class="p">}</span>
+
+
+<span class="n">QI_colors</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;QS&#39;</span><span class="p">:</span> <span class="s1">&#39;#C0C0C0&#39;</span><span class="p">,</span> <span class="c1"># Queue Size</span>
+    <span class="s1">&#39;QSP&#39;</span><span class="p">:</span> <span class="s1">&#39;#00D200&#39;</span><span class="p">,</span> <span class="c1"># Pending</span>
+    <span class="s1">&#39;QSIP&#39;</span><span class="p">:</span> <span class="s1">&#39;#0096FF&#39;</span><span class="p">,</span> <span class="c1"># In Progress</span>
+<span class="p">}</span>
+
+<span class="c1">#%% Functions Defintion</span>
+
+<div class="viewcode-block" id="prepare_plot"><a class="viewcode-back" href="../AMRFrontEnds.html#AMRFrontEnds.prepare_plot">[docs]</a><span class="k">def</span> <span class="nf">prepare_plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">dimensions</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">hide_axis</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function that prepares an empty :py:class:`matplotlib.plt` plot figure.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span>
+        <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">figsize</span><span class="o">=</span><span class="n">dimensions</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">hide_axis</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span></div>
+
+<span class="c1">#%% Main Block</span>
+
+<div class="viewcode-block" id="FleetStatsGUI"><a class="viewcode-back" href="../AMRFrontEnds.html#AMRFrontEnds.FleetStatsGUI">[docs]</a><span class="k">class</span> <span class="nc">FleetStatsGUI</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Class to be used to generate a Fleet Dashboard.</span>
+
+<span class="sd">    Class used to generate a Fleet Dashboard. The dashboard will contain</span>
+<span class="sd">    three :py:class:`matplotlib.plt` plots, one being a pie chart of the robot states,</span>
+<span class="sd">    and two being a real-time plots of the robot states and job queue.</span>
+
+<span class="sd">    Attributes:        </span>
+<span class="sd">        FM (:py:class:`~AMRBase.FleetManager`): The :py:class:`~AMRBase.FleetManager` object</span>
+<span class="sd">            that hold the robot to which statistics will be calculated</span>
+
+<span class="sd">        delta_t (:py:class:`int`): The time interval in seconds at which refresh the data and update the plots.</span>
+<span class="sd">            **Default**: 20 [s]</span>
+
+<span class="sd">        reset_trip (:py:class:`bool`): Parameter that controls whether or not to run the (:py:meth:`~AMRBase.MasterAMR.resetTrip`) method</span>
+<span class="sd">            before starting to plot the data.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">FM</span><span class="p">,</span> <span class="n">delta_t</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">reset_trip</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">FM</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">FleetManager</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Object provided is not a FleetManager object&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">FM</span> <span class="o">=</span> <span class="n">FM</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delta_t</span> <span class="o">=</span> <span class="n">delta_t</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_trip</span> <span class="o">=</span> <span class="n">reset_trip</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_thread</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_paused</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">FRI</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;RIP&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;RA&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;RUA&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;TimeStamps&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="p">}</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">QI</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;QS&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;QSP&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;QSIP&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;TimeStamps&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="p">}</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">createwindow</span><span class="p">()</span>
+        
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reset_trip</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">tripReset</span><span class="p">()</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">ds1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">datastore</span><span class="p">[</span><span class="s1">&#39;FleetRobotInformation&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ds2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">datastore</span><span class="p">[</span><span class="s1">&#39;TripStateInformation&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ds3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">datastore</span><span class="p">[</span><span class="s1">&#39;QueueInformation&#39;</span><span class="p">]</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">animate1</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">animate2</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">animate3</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        
+
+        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">update_datastores</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">delta_t</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ani1</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fig1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">animate1</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">delta_t</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cache_frame_data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ani2</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fig2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">animate2</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">delta_t</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cache_frame_data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ani3</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fig3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">animate3</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">delta_t</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cache_frame_data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+    
+<div class="viewcode-block" id="FleetStatsGUI.createwindow"><a class="viewcode-back" href="../AMRFrontEnds.html#AMRFrontEnds.FleetStatsGUI.createwindow">[docs]</a>    <span class="k">def</span> <span class="nf">createwindow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">wm_title</span><span class="p">(</span><span class="s1">&#39;Fleet Statistics&#39;</span><span class="p">)</span>
+        <span class="c1"># self.root.minsize(1200, 750)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">row0</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row0</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_btn</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">row0</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Reset Trip&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reset_data</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_btn</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">pause_btn</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">row0</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Pause Plot&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pause_plot</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pause_btn</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">row1</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row1</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row1</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row1</span><span class="o">.</span><span class="n">rowconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax1</span> <span class="o">=</span> <span class="n">prepare_plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Robots State Count&#39;</span><span class="p">,</span> <span class="n">dimensions</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">canvas1</span> <span class="o">=</span> <span class="n">FigureCanvasTkAgg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fig1</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">row1</span><span class="p">)</span>  <span class="c1"># A tk.DrawingArea.</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax2</span> <span class="o">=</span> <span class="n">prepare_plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Robots Information&#39;</span><span class="p">,</span> <span class="n">dimensions</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">),</span> <span class="n">hide_axis</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">canvas2</span> <span class="o">=</span> <span class="n">FigureCanvasTkAgg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fig2</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">row1</span><span class="p">)</span>  <span class="c1"># A tk.DrawingArea.</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">canvas1</span><span class="o">.</span><span class="n">get_tk_widget</span><span class="p">()</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s1">&#39;nswe&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">canvas2</span><span class="o">.</span><span class="n">get_tk_widget</span><span class="p">()</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s1">&#39;nswe&#39;</span><span class="p">)</span>
+
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">row2</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row2</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row2</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row2</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">subrow2_1</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">row2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subrow2_1</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subrow2_1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">subrow2_2</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">row2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subrow2_2</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subrow2_2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar1</span> <span class="o">=</span> <span class="n">NavigationToolbar2Tk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">canvas1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">subrow2_1</span><span class="p">,</span> <span class="n">pack_toolbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar1</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar1</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar1</span><span class="o">.</span><span class="n">_message_label</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">toolbar1</span><span class="o">.</span><span class="n">winfo_children</span><span class="p">():</span>
+            <span class="n">element</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar2</span> <span class="o">=</span> <span class="n">NavigationToolbar2Tk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">canvas2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">subrow2_2</span><span class="p">,</span> <span class="n">pack_toolbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar2</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar2</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar2</span><span class="o">.</span><span class="n">_message_label</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">toolbar2</span><span class="o">.</span><span class="n">winfo_children</span><span class="p">():</span>
+            <span class="n">element</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">row3</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row3</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row3</span><span class="o">.</span><span class="n">rowconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax3</span> <span class="o">=</span> <span class="n">prepare_plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Robots State Count&#39;</span><span class="p">,</span> <span class="n">dimensions</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">canvas3</span> <span class="o">=</span> <span class="n">FigureCanvasTkAgg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fig3</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">row3</span><span class="p">)</span>  <span class="c1"># A tk.DrawingArea.</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">canvas3</span><span class="o">.</span><span class="n">get_tk_widget</span><span class="p">()</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s1">&#39;nswe&#39;</span><span class="p">)</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">row4</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row4</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar3</span> <span class="o">=</span> <span class="n">NavigationToolbar2Tk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">canvas3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">row4</span><span class="p">,</span> <span class="n">pack_toolbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar3</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar3</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar3</span><span class="o">.</span><span class="n">_message_label</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">toolbar3</span><span class="o">.</span><span class="n">winfo_children</span><span class="p">():</span>
+            <span class="n">element</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar3</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">rowconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">rowconfigure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">rowconfigure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">rowconfigure</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">rowconfigure</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">row0</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s1">&#39;nw&#39;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s1">&#39;nswe&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s1">&#39;we&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row3</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s1">&#39;nswe&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row4</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">protocol</span><span class="p">(</span><span class="s2">&quot;WM_DELETE_WINDOW&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_closing</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FleetStatsGUI.reset"><a class="viewcode-back" href="../AMRFrontEnds.html#AMRFrontEnds.FleetStatsGUI.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">tripReset</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">QI</span><span class="p">[</span><span class="s1">&#39;QS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">QI</span><span class="p">[</span><span class="s1">&#39;QSP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">QI</span><span class="p">[</span><span class="s1">&#39;QSIP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">FRI</span><span class="p">[</span><span class="s1">&#39;RIP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">FRI</span><span class="p">[</span><span class="s1">&#39;RA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">FRI</span><span class="p">[</span><span class="s1">&#39;RUA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">FRI</span><span class="p">[</span><span class="s1">&#39;TimeStamps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">QI</span><span class="p">[</span><span class="s1">&#39;TimeStamps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span></div>
+
+<div class="viewcode-block" id="FleetStatsGUI.reset_data"><a class="viewcode-back" href="../AMRFrontEnds.html#AMRFrontEnds.FleetStatsGUI.reset_data">[docs]</a>    <span class="k">def</span> <span class="nf">reset_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="FleetStatsGUI.pause_plot"><a class="viewcode-back" href="../AMRFrontEnds.html#AMRFrontEnds.FleetStatsGUI.pause_plot">[docs]</a>    <span class="k">def</span> <span class="nf">pause_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_paused</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ani1</span><span class="o">.</span><span class="n">pause</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ani2</span><span class="o">.</span><span class="n">pause</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ani3</span><span class="o">.</span><span class="n">pause</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">plot_paused</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pause_btn</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Resume Plot&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ani1</span><span class="o">.</span><span class="n">resume</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ani2</span><span class="o">.</span><span class="n">resume</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ani3</span><span class="o">.</span><span class="n">resume</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">plot_paused</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pause_btn</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Pause Plot&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FleetStatsGUI.update_datastores"><a class="viewcode-back" href="../AMRFrontEnds.html#AMRFrontEnds.FleetStatsGUI.update_datastores">[docs]</a>    <span class="k">def</span> <span class="nf">update_datastores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ds1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">datastore</span><span class="p">[</span><span class="s1">&#39;FleetRobotInformation&#39;</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ds2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">datastore</span><span class="p">[</span><span class="s1">&#39;TripStateInformation&#39;</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ds3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FM</span><span class="o">.</span><span class="n">datastore</span><span class="p">[</span><span class="s1">&#39;QueueInformation&#39;</span><span class="p">]</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delta_t</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_thread</span><span class="p">:</span>
+                <span class="k">break</span></div>
+        
+<div class="viewcode-block" id="FleetStatsGUI.on_closing"><a class="viewcode-back" href="../AMRFrontEnds.html#AMRFrontEnds.FleetStatsGUI.on_closing">[docs]</a>    <span class="k">def</span> <span class="nf">on_closing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_thread</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="FleetStatsGUI.animate1"><a class="viewcode-back" href="../AMRFrontEnds.html#AMRFrontEnds.FleetStatsGUI.animate1">[docs]</a>    <span class="k">def</span> <span class="nf">animate1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">FRI</span><span class="p">[</span><span class="s1">&#39;TimeStamps&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">now</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">FRI</span><span class="p">[</span><span class="s1">&#39;RIP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ds1</span><span class="p">[</span><span class="s1">&#39;RobotsInProgress&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">FRI</span><span class="p">[</span><span class="s1">&#39;RA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ds1</span><span class="p">[</span><span class="s1">&#39;RobotsAvail&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">FRI</span><span class="p">[</span><span class="s1">&#39;RUA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ds1</span><span class="p">[</span><span class="s1">&#39;RobotsUnAvail&#39;</span><span class="p">])</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax1</span><span class="o">.</span><span class="n">cla</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">FRI</span><span class="p">[</span><span class="s1">&#39;TimeStamps&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">FRI</span><span class="p">[</span><span class="s1">&#39;RIP&#39;</span><span class="p">],</span> <span class="n">FRI_colors</span><span class="p">[</span><span class="s1">&#39;RIP&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">FRI</span><span class="p">[</span><span class="s1">&#39;TimeStamps&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">FRI</span><span class="p">[</span><span class="s1">&#39;RA&#39;</span><span class="p">],</span> <span class="n">FRI_colors</span><span class="p">[</span><span class="s1">&#39;RA&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">FRI</span><span class="p">[</span><span class="s1">&#39;TimeStamps&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">FRI</span><span class="p">[</span><span class="s1">&#39;RUA&#39;</span><span class="p">],</span> <span class="n">FRI_colors</span><span class="p">[</span><span class="s1">&#39;RUA&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+            <span class="n">xformatter</span> <span class="o">=</span> <span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%H:%M&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax1</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">xformatter</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax1</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">integer</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Robots State Count&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;In Progress&#39;</span><span class="p">,</span> <span class="s1">&#39;Available&#39;</span><span class="p">,</span> <span class="s1">&#39;Unavailable&#39;</span><span class="p">],</span>
+                    <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span>
+                    <span class="p">)</span>
+            
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax1</span><span class="o">.</span><span class="n">cla</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Robots State Count&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FleetStatsGUI.animate2"><a class="viewcode-back" href="../AMRFrontEnds.html#AMRFrontEnds.FleetStatsGUI.animate2">[docs]</a>    <span class="k">def</span> <span class="nf">animate2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">colors</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">sizes</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">altsizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+            <span class="n">totaltimes</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">ds2</span><span class="p">[</span><span class="n">RST_dict</span><span class="p">[</span><span class="n">x</span><span class="p">]]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">RST_list</span><span class="p">])</span>
+
+            <span class="k">for</span> <span class="n">RST</span> <span class="ow">in</span> <span class="n">RST_list</span><span class="p">:</span>
+                <span class="n">curtime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ds2</span><span class="p">[</span><span class="n">RST_dict</span><span class="p">[</span><span class="n">RST</span><span class="p">]]</span>
+                <span class="n">sizes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curtime</span><span class="p">)</span>
+
+                <span class="n">colors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RST_colors</span><span class="p">[</span><span class="n">RST</span><span class="p">])</span>
+
+                <span class="k">if</span> <span class="n">RST</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;DDT&#39;</span><span class="p">,</span> <span class="s1">&#39;PDT&#39;</span><span class="p">,</span> <span class="s1">&#39;AT&#39;</span><span class="p">,</span> <span class="s1">&#39;BT&#39;</span><span class="p">]:</span>
+                    <span class="n">altsizes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ds2</span><span class="p">[</span><span class="n">RST_dict</span><span class="p">[</span><span class="n">RST</span><span class="p">]]</span>
+                <span class="k">elif</span> <span class="n">RST</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;PT&#39;</span><span class="p">,</span> <span class="s1">&#39;PedT&#39;</span><span class="p">]:</span>
+                    <span class="n">altsizes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ds2</span><span class="p">[</span><span class="n">RST_dict</span><span class="p">[</span><span class="n">RST</span><span class="p">]]</span>
+                <span class="k">elif</span> <span class="n">RST</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;DT&#39;</span><span class="p">,</span> <span class="s1">&#39;FDT&#39;</span><span class="p">,</span> <span class="s1">&#39;DedT&#39;</span><span class="p">,</span> <span class="s1">&#39;FDedT&#39;</span><span class="p">]:</span>
+                    <span class="n">altsizes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ds2</span><span class="p">[</span><span class="n">RST_dict</span><span class="p">[</span><span class="n">RST</span><span class="p">]]</span>
+                <span class="k">elif</span> <span class="n">RST</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;IFT&#39;</span><span class="p">,</span> <span class="s1">&#39;IET&#39;</span><span class="p">]:</span>
+                    <span class="n">altsizes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ds2</span><span class="p">[</span><span class="n">RST_dict</span><span class="p">[</span><span class="n">RST</span><span class="p">]]</span>
+                
+                <span class="n">percentage</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">curtime</span><span class="o">/</span><span class="n">totaltimes</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+                <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">RST_labels</span><span class="p">[</span><span class="n">RST</span><span class="p">]</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">percentage</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax2</span><span class="o">.</span><span class="n">cla</span><span class="p">()</span>
+
+            <span class="n">size</span> <span class="o">=</span> <span class="mf">0.3</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax2</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">altsizes</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">RST_altcolors</span><span class="p">,</span>
+                <span class="n">wedgeprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">))</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Robots Information&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+
+            <span class="n">wedges</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax2</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">size</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>
+                <span class="n">wedgeprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">))</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">wedges</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span>
+                    <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span>
+                    <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+                    <span class="p">)</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">fig2</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">right</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax2</span><span class="o">.</span><span class="n">cla</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax2</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Robots Information&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FleetStatsGUI.animate3"><a class="viewcode-back" href="../AMRFrontEnds.html#AMRFrontEnds.FleetStatsGUI.animate3">[docs]</a>    <span class="k">def</span> <span class="nf">animate3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">QI</span><span class="p">[</span><span class="s1">&#39;TimeStamps&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">now</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">QI</span><span class="p">[</span><span class="s1">&#39;QS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ds3</span><span class="p">[</span><span class="s1">&#39;QueueSize&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">QI</span><span class="p">[</span><span class="s1">&#39;QSP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ds3</span><span class="p">[</span><span class="s1">&#39;QueueSizePending&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">QI</span><span class="p">[</span><span class="s1">&#39;QSIP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ds3</span><span class="p">[</span><span class="s1">&#39;QueueSizeInProgress&#39;</span><span class="p">])</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax3</span><span class="o">.</span><span class="n">cla</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">QI</span><span class="p">[</span><span class="s1">&#39;TimeStamps&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">QI</span><span class="p">[</span><span class="s1">&#39;QS&#39;</span><span class="p">],</span> <span class="n">QI_colors</span><span class="p">[</span><span class="s1">&#39;QS&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">QI</span><span class="p">[</span><span class="s1">&#39;TimeStamps&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">QI</span><span class="p">[</span><span class="s1">&#39;QSP&#39;</span><span class="p">],</span> <span class="n">QI_colors</span><span class="p">[</span><span class="s1">&#39;QSP&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">QI</span><span class="p">[</span><span class="s1">&#39;TimeStamps&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">QI</span><span class="p">[</span><span class="s1">&#39;QSIP&#39;</span><span class="p">],</span> <span class="n">QI_colors</span><span class="p">[</span><span class="s1">&#39;QSIP&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+            <span class="n">xformatter</span> <span class="o">=</span> <span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%H:%M&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax3</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">xformatter</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax3</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">integer</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Jobs Queue&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Queue Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Pending&#39;</span><span class="p">,</span> <span class="s1">&#39;In Progress&#39;</span><span class="p">],</span>
+                    <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span>
+                    <span class="p">)</span>
+
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax3</span><span class="o">.</span><span class="n">cla</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Jobs Queue&#39;</span><span class="p">)</span></div></div>
+
+<span class="c1">#%%</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Marco Zangrandi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

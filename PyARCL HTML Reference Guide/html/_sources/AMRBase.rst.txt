@@ -1,0 +1,8 @@
+AMRBase module
+==============
+
+.. automodule:: AMRBase
+   :members:
+   :inherited-members: dict, Thread
+   :undoc-members:
+   :show-inheritance:

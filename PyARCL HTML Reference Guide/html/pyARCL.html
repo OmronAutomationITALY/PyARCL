@@ -1,0 +1,2105 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyARCL module &mdash; PyARCL 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="pyarcl" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PyARCL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyarcl</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PyARCL module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.ConfigParameter"><code class="docutils literal notranslate"><span class="pre">ConfigParameter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.ConfigParameter.value"><code class="docutils literal notranslate"><span class="pre">ConfigParameter.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.FleetManager"><code class="docutils literal notranslate"><span class="pre">FleetManager</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.IP_address"><code class="docutils literal notranslate"><span class="pre">FleetManager.IP_address</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.password"><code class="docutils literal notranslate"><span class="pre">FleetManager.password</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.commport"><code class="docutils literal notranslate"><span class="pre">FleetManager.commport</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.loglevel"><code class="docutils literal notranslate"><span class="pre">FleetManager.loglevel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.robots"><code class="docutils literal notranslate"><span class="pre">FleetManager.robots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.attachRobot"><code class="docutils literal notranslate"><span class="pre">FleetManager.attachRobot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.config"><code class="docutils literal notranslate"><span class="pre">FleetManager.config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.datastore"><code class="docutils literal notranslate"><span class="pre">FleetManager.datastore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.datetime"><code class="docutils literal notranslate"><span class="pre">FleetManager.datetime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.goallist"><code class="docutils literal notranslate"><span class="pre">FleetManager.goallist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.grouplist"><code class="docutils literal notranslate"><span class="pre">FleetManager.grouplist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.queue"><code class="docutils literal notranslate"><span class="pre">FleetManager.queue</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.queueMulti"><code class="docutils literal notranslate"><span class="pre">FleetManager.queueMulti()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.queuePickup"><code class="docutils literal notranslate"><span class="pre">FleetManager.queuePickup()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.queuePickupDropoff"><code class="docutils literal notranslate"><span class="pre">FleetManager.queuePickupDropoff()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.queuelist"><code class="docutils literal notranslate"><span class="pre">FleetManager.queuelist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.sectionlist"><code class="docutils literal notranslate"><span class="pre">FleetManager.sectionlist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.FleetManager.tripReset"><code class="docutils literal notranslate"><span class="pre">FleetManager.tripReset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.GroupDict"><code class="docutils literal notranslate"><span class="pre">GroupDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.GroupDict.grouplist"><code class="docutils literal notranslate"><span class="pre">GroupDict.grouplist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.GroupDict.TL_obj"><code class="docutils literal notranslate"><span class="pre">GroupDict.TL_obj</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.GroupDict.TL_requests"><code class="docutils literal notranslate"><span class="pre">GroupDict.TL_requests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.GroupDict.logger"><code class="docutils literal notranslate"><span class="pre">GroupDict.logger</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.InputDict"><code class="docutils literal notranslate"><span class="pre">InputDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.InputDict.inputlist"><code class="docutils literal notranslate"><span class="pre">InputDict.inputlist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.InputDict.TL_obj"><code class="docutils literal notranslate"><span class="pre">InputDict.TL_obj</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.InputDict.TL_requests"><code class="docutils literal notranslate"><span class="pre">InputDict.TL_requests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.InputDict.logger"><code class="docutils literal notranslate"><span class="pre">InputDict.logger</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.Job"><code class="docutils literal notranslate"><span class="pre">Job</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Job.jobid"><code class="docutils literal notranslate"><span class="pre">Job.jobid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Job.idlist"><code class="docutils literal notranslate"><span class="pre">Job.idlist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Job.jobSegments"><code class="docutils literal notranslate"><span class="pre">Job.jobSegments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Job.TL_obj"><code class="docutils literal notranslate"><span class="pre">Job.TL_obj</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Job.TL_requests"><code class="docutils literal notranslate"><span class="pre">Job.TL_requests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Job.logger"><code class="docutils literal notranslate"><span class="pre">Job.logger</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Job.assignedrobot"><code class="docutils literal notranslate"><span class="pre">Job.assignedrobot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Job.cancel"><code class="docutils literal notranslate"><span class="pre">Job.cancel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Job.iscomplete"><code class="docutils literal notranslate"><span class="pre">Job.iscomplete</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.JobDict"><code class="docutils literal notranslate"><span class="pre">JobDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobDict.queuelist"><code class="docutils literal notranslate"><span class="pre">JobDict.queuelist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobDict.TL_obj"><code class="docutils literal notranslate"><span class="pre">JobDict.TL_obj</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobDict.TL_requests"><code class="docutils literal notranslate"><span class="pre">JobDict.TL_requests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobDict.logger"><code class="docutils literal notranslate"><span class="pre">JobDict.logger</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.JobSegment"><code class="docutils literal notranslate"><span class="pre">JobSegment</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegment.id"><code class="docutils literal notranslate"><span class="pre">JobSegment.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegment.jobid"><code class="docutils literal notranslate"><span class="pre">JobSegment.jobid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegment.TL_obj"><code class="docutils literal notranslate"><span class="pre">JobSegment.TL_obj</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegment.TL_requests"><code class="docutils literal notranslate"><span class="pre">JobSegment.TL_requests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegment.logger"><code class="docutils literal notranslate"><span class="pre">JobSegment.logger</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegment.assignedrobot"><code class="docutils literal notranslate"><span class="pre">JobSegment.assignedrobot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegment.failnumber"><code class="docutils literal notranslate"><span class="pre">JobSegment.failnumber</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegment.finishedtime"><code class="docutils literal notranslate"><span class="pre">JobSegment.finishedtime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegment.goal"><code class="docutils literal notranslate"><span class="pre">JobSegment.goal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegment.priority"><code class="docutils literal notranslate"><span class="pre">JobSegment.priority</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegment.queuedtime"><code class="docutils literal notranslate"><span class="pre">JobSegment.queuedtime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegment.state"><code class="docutils literal notranslate"><span class="pre">JobSegment.state</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegment.substate"><code class="docutils literal notranslate"><span class="pre">JobSegment.substate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegment.type"><code class="docutils literal notranslate"><span class="pre">JobSegment.type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.JobSegmentDict"><code class="docutils literal notranslate"><span class="pre">JobSegmentDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegmentDict.jobid"><code class="docutils literal notranslate"><span class="pre">JobSegmentDict.jobid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegmentDict.idlist"><code class="docutils literal notranslate"><span class="pre">JobSegmentDict.idlist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegmentDict.TL_obj"><code class="docutils literal notranslate"><span class="pre">JobSegmentDict.TL_obj</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegmentDict.TL_requests"><code class="docutils literal notranslate"><span class="pre">JobSegmentDict.TL_requests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.JobSegmentDict.logger"><code class="docutils literal notranslate"><span class="pre">JobSegmentDict.logger</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.MasterAMR"><code class="docutils literal notranslate"><span class="pre">MasterAMR</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.IP_address"><code class="docutils literal notranslate"><span class="pre">MasterAMR.IP_address</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.password"><code class="docutils literal notranslate"><span class="pre">MasterAMR.password</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.commport"><code class="docutils literal notranslate"><span class="pre">MasterAMR.commport</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.autostart"><code class="docutils literal notranslate"><span class="pre">MasterAMR.autostart</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.TL_requests"><code class="docutils literal notranslate"><span class="pre">MasterAMR.TL_requests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.TL_obj"><code class="docutils literal notranslate"><span class="pre">MasterAMR.TL_obj</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.logger"><code class="docutils literal notranslate"><span class="pre">MasterAMR.logger</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.loglevel"><code class="docutils literal notranslate"><span class="pre">MasterAMR.loglevel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.config"><code class="docutils literal notranslate"><span class="pre">MasterAMR.config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.datastore"><code class="docutils literal notranslate"><span class="pre">MasterAMR.datastore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.datetime"><code class="docutils literal notranslate"><span class="pre">MasterAMR.datetime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.goallist"><code class="docutils literal notranslate"><span class="pre">MasterAMR.goallist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.grouplist"><code class="docutils literal notranslate"><span class="pre">MasterAMR.grouplist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.queue"><code class="docutils literal notranslate"><span class="pre">MasterAMR.queue</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.queueMulti"><code class="docutils literal notranslate"><span class="pre">MasterAMR.queueMulti()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.queuePickup"><code class="docutils literal notranslate"><span class="pre">MasterAMR.queuePickup()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.queuePickupDropoff"><code class="docutils literal notranslate"><span class="pre">MasterAMR.queuePickupDropoff()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.queuelist"><code class="docutils literal notranslate"><span class="pre">MasterAMR.queuelist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.sectionlist"><code class="docutils literal notranslate"><span class="pre">MasterAMR.sectionlist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.MasterAMR.tripReset"><code class="docutils literal notranslate"><span class="pre">MasterAMR.tripReset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.OutputDict"><code class="docutils literal notranslate"><span class="pre">OutputDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.OutputDict.outputlist"><code class="docutils literal notranslate"><span class="pre">OutputDict.outputlist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.OutputDict.TL_obj"><code class="docutils literal notranslate"><span class="pre">OutputDict.TL_obj</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.OutputDict.TL_requests"><code class="docutils literal notranslate"><span class="pre">OutputDict.TL_requests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.OutputDict.logger"><code class="docutils literal notranslate"><span class="pre">OutputDict.logger</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.Parameter"><code class="docutils literal notranslate"><span class="pre">Parameter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Parameter.value"><code class="docutils literal notranslate"><span class="pre">Parameter.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.ParameterDict"><code class="docutils literal notranslate"><span class="pre">ParameterDict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.Robot"><code class="docutils literal notranslate"><span class="pre">Robot</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.IP_address"><code class="docutils literal notranslate"><span class="pre">Robot.IP_address</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.password"><code class="docutils literal notranslate"><span class="pre">Robot.password</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.commport"><code class="docutils literal notranslate"><span class="pre">Robot.commport</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.loglevel"><code class="docutils literal notranslate"><span class="pre">Robot.loglevel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.config"><code class="docutils literal notranslate"><span class="pre">Robot.config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.datastore"><code class="docutils literal notranslate"><span class="pre">Robot.datastore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.datetime"><code class="docutils literal notranslate"><span class="pre">Robot.datetime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.dock"><code class="docutils literal notranslate"><span class="pre">Robot.dock()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.dotask"><code class="docutils literal notranslate"><span class="pre">Robot.dotask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.executemacro"><code class="docutils literal notranslate"><span class="pre">Robot.executemacro()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.goallist"><code class="docutils literal notranslate"><span class="pre">Robot.goallist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.goto"><code class="docutils literal notranslate"><span class="pre">Robot.goto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.grouplist"><code class="docutils literal notranslate"><span class="pre">Robot.grouplist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.inputlist"><code class="docutils literal notranslate"><span class="pre">Robot.inputlist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.inputs"><code class="docutils literal notranslate"><span class="pre">Robot.inputs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.outputlist"><code class="docutils literal notranslate"><span class="pre">Robot.outputlist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.outputs"><code class="docutils literal notranslate"><span class="pre">Robot.outputs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.queue"><code class="docutils literal notranslate"><span class="pre">Robot.queue</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.queueDropoff"><code class="docutils literal notranslate"><span class="pre">Robot.queueDropoff()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.queueMulti"><code class="docutils literal notranslate"><span class="pre">Robot.queueMulti()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.queuePickup"><code class="docutils literal notranslate"><span class="pre">Robot.queuePickup()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.queuePickupDropoff"><code class="docutils literal notranslate"><span class="pre">Robot.queuePickupDropoff()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.queuelist"><code class="docutils literal notranslate"><span class="pre">Robot.queuelist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.sectionlist"><code class="docutils literal notranslate"><span class="pre">Robot.sectionlist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.status"><code class="docutils literal notranslate"><span class="pre">Robot.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.stop"><code class="docutils literal notranslate"><span class="pre">Robot.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.tripReset"><code class="docutils literal notranslate"><span class="pre">Robot.tripReset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Robot.undock"><code class="docutils literal notranslate"><span class="pre">Robot.undock()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.RobotDict"><code class="docutils literal notranslate"><span class="pre">RobotDict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.SectionDict"><code class="docutils literal notranslate"><span class="pre">SectionDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.SectionDict.sectionlist"><code class="docutils literal notranslate"><span class="pre">SectionDict.sectionlist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.SectionDict.TL_obj"><code class="docutils literal notranslate"><span class="pre">SectionDict.TL_obj</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.SectionDict.TL_requests"><code class="docutils literal notranslate"><span class="pre">SectionDict.TL_requests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.SectionDict.logger"><code class="docutils literal notranslate"><span class="pre">SectionDict.logger</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.Status"><code class="docutils literal notranslate"><span class="pre">Status</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Status.aramstatus"><code class="docutils literal notranslate"><span class="pre">Status.aramstatus</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Status.location"><code class="docutils literal notranslate"><span class="pre">Status.location</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Status.locscore"><code class="docutils literal notranslate"><span class="pre">Status.locscore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.Status.temperature"><code class="docutils literal notranslate"><span class="pre">Status.temperature</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.TLrequest"><code class="docutils literal notranslate"><span class="pre">TLrequest()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.TelnetRequestThread"><code class="docutils literal notranslate"><span class="pre">TelnetRequestThread</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyARCL.TelnetRequestThread.run"><code class="docutils literal notranslate"><span class="pre">TelnetRequestThread.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.find_nth"><code class="docutils literal notranslate"><span class="pre">find_nth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.findline"><code class="docutils literal notranslate"><span class="pre">findline()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.onofftobool"><code class="docutils literal notranslate"><span class="pre">onofftobool()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.readline"><code class="docutils literal notranslate"><span class="pre">readline()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.sanitizelogmessage"><code class="docutils literal notranslate"><span class="pre">sanitizelogmessage()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.sendcommand"><code class="docutils literal notranslate"><span class="pre">sendcommand()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.setup_logger"><code class="docutils literal notranslate"><span class="pre">setup_logger()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.slm"><code class="docutils literal notranslate"><span class="pre">slm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.startserver"><code class="docutils literal notranslate"><span class="pre">startserver()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyARCL.trimmer"><code class="docutils literal notranslate"><span class="pre">trimmer()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyARCL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">pyarcl</a></li>
+      <li class="breadcrumb-item active">PyARCL module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/PyARCL.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-PyARCL">
+<span id="pyarcl-module"></span><h1>PyARCL module<a class="headerlink" href="#module-PyARCL" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.ConfigParameter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">ConfigParameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TL_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paramname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sectionname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rawvalue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TL_requests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">GeneralLog</span> <span class="pre">(INFO)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#ConfigParameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.ConfigParameter" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyARCL.Parameter" title="PyARCL.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parameter</span></code></a></p>
+<p>Class that describes a configuration parameter.</p>
+<p>This class describes a config. parameter; basically just inherits <a class="reference internal" href="#PyARCL.Parameter" title="PyARCL.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parameter</span></code></a>
+properties and implements a set function for the value property.
+This class is not meant to be used by the user. Instead it is meant to be used
+by the config functions.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.ConfigParameter.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#PyARCL.ConfigParameter.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.FleetManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">FleetManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">IP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'adept'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7171</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autostart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'info'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#FleetManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.FleetManager" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyARCL.MasterAMR" title="PyARCL.MasterAMR"><code class="xref py py-class docutils literal notranslate"><span class="pre">MasterAMR</span></code></a></p>
+<p>Class describing a Fleet Manager system.</p>
+<p>This class is the class the user should use to communicate with a Fleet Manager,
+usually running on an Enterprise Manager appliance. Use the FleetManager objects
+to access configuration, datastore, job queue and other useful data or to request
+new jobs and modify configuration parameters (Config change possible only on FC&lt;2.1).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.IP_address">
+<span class="sig-name descname"><span class="pre">IP_address</span></span><a class="headerlink" href="#PyARCL.FleetManager.IP_address" title="Permalink to this definition"></a></dt>
+<dd><p>The IP address of the appliance, inserted as a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.password">
+<span class="sig-name descname"><span class="pre">password</span></span><a class="headerlink" href="#PyARCL.FleetManager.password" title="Permalink to this definition"></a></dt>
+<dd><p>The user-created password of the ARCL Telnet server, as
+defined in MobilePlanner.
+<strong>Default</strong>: adept</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.commport">
+<span class="sig-name descname"><span class="pre">commport</span></span><a class="headerlink" href="#PyARCL.FleetManager.commport" title="Permalink to this definition"></a></dt>
+<dd><p>The port used by the appliance to communicate through ARCL.
+<strong>Default</strong>: 7171</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.loglevel">
+<span class="sig-name descname"><span class="pre">loglevel</span></span><a class="headerlink" href="#PyARCL.FleetManager.loglevel" title="Permalink to this definition"></a></dt>
+<dd><p>String that represents the log level requested for the object.
+Possible values are ‘debug’, ‘info’, ‘warning’, ‘error’, ‘critical’.
+<strong>Default</strong>: INFO level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.robots">
+<span class="sig-name descname"><span class="pre">robots</span></span><a class="headerlink" href="#PyARCL.FleetManager.robots" title="Permalink to this definition"></a></dt>
+<dd><p>by using the <a class="reference internal" href="#PyARCL.FleetManager.attachRobot" title="PyARCL.FleetManager.attachRobot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">attachRobot()</span></code></a> method one
+can add Robot objects to this dictionary, which indexes the Robot objects
+by their unique ids. Used to easy automation of access to the <a class="reference internal" href="#PyARCL.Robot" title="PyARCL.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a>
+objects on job-observation related scripts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code> of <a class="reference internal" href="#PyARCL.Robot" title="PyARCL.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.attachRobot">
+<span class="sig-name descname"><span class="pre">attachRobot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">AMR</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#FleetManager.attachRobot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.FleetManager.attachRobot" title="Permalink to this definition"></a></dt>
+<dd><p>Attaches a <a class="reference internal" href="#PyARCL.Robot" title="PyARCL.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a> object to the robots dictionary attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>AMR</strong> (<a class="reference internal" href="#PyARCL.Robot" title="PyARCL.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a>) – The <a class="reference internal" href="#PyARCL.Robot" title="PyARCL.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a> object to add to the <a class="reference internal" href="#PyARCL.FleetManager.robots" title="PyARCL.FleetManager.robots"><code class="xref py py-attr docutils literal notranslate"><span class="pre">robots</span></code></a> attribute.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.config">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#PyARCL.FleetManager.config" title="Permalink to this definition"></a></dt>
+<dd><p>Container acting like a dictionary of
+<a class="reference internal" href="#PyARCL.ParameterDict" title="PyARCL.ParameterDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParameterDict</span></code></a> objects. Keys are the names of the sections, which can
+be accessed through the <a class="reference internal" href="#PyARCL.MasterAMR.sectionlist" title="PyARCL.MasterAMR.sectionlist"><code class="xref py py-class docutils literal notranslate"><span class="pre">sectionlist</span></code></a> property. Allows iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#PyARCL.SectionDict" title="PyARCL.SectionDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">SectionDict</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.datastore">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">datastore</span></span><a class="headerlink" href="#PyARCL.FleetManager.datastore" title="Permalink to this definition"></a></dt>
+<dd><p>Container acting like a dictionary of
+<a class="reference internal" href="#PyARCL.ParameterDict" title="PyARCL.ParameterDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParameterDict</span></code></a> objects. Keys are the names of the groups, which can
+be accessed through the <a class="reference internal" href="#PyARCL.MasterAMR.grouplist" title="PyARCL.MasterAMR.grouplist"><code class="xref py py-class docutils literal notranslate"><span class="pre">grouplist</span></code></a> property. Allows iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#PyARCL.GroupDict" title="PyARCL.GroupDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">GroupDict</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.datetime">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">datetime</span></span><a class="headerlink" href="#PyARCL.FleetManager.datetime" title="Permalink to this definition"></a></dt>
+<dd><p>get current time of the client in DateTime
+time format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.goallist">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">goallist</span></span><a class="headerlink" href="#PyARCL.FleetManager.goallist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the goals present in map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.grouplist">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grouplist</span></span><a class="headerlink" href="#PyARCL.FleetManager.grouplist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the groups in the AMR
+or FM datastore.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.queue">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">queue</span></span><a class="headerlink" href="#PyARCL.FleetManager.queue" title="Permalink to this definition"></a></dt>
+<dd><p>Container acting like a dictionary of <a class="reference internal" href="#PyARCL.JobDict" title="PyARCL.JobDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">JobDict</span></code></a> objects.
+Keys are the unique ids of the jobs, which can be accessed through the
+<a class="reference internal" href="#PyARCL.MasterAMR.queuelist" title="PyARCL.MasterAMR.queuelist"><code class="xref py py-attr docutils literal notranslate"><span class="pre">queuelist</span></code></a> property. Allows iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#PyARCL.JobDict" title="PyARCL.JobDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">JobDict</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.queueMulti">
+<span class="sig-name descname"><span class="pre">queueMulti</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">missiongoallist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">typelist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prioritylist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">customjobid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyARCL.FleetManager.queueMulti" title="Permalink to this definition"></a></dt>
+<dd><p>General-purpose method to generate complex jobs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>missiongoallist</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – list containing the goal sequence
+of the needed job segments. The list can contain any number of
+goals, with an upper limit of NEED_TO_CHECK.
+For easiness of use, this parameter can be inserted as a simple
+string; if that is the case, a simple pickup job is created.</p></li>
+<li><p><strong>typelist</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – list containing the job segment type for
+each requested goal. the job segment type can be either ‘Pickup’
+or ‘Dropoff’.
+<strong>Default</strong>: If typelist is not specified, the job segment types
+are assumed to alternate between pickup and dropoff for all
+job segments.</p></li>
+<li><p><strong>prioritylist</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – list containing the priorities for
+each job segment.
+<strong>Default</strong>: If prioritylist is not specified, the priorities for
+all job segment types are assumed to be the default as
+defined in the config.</p></li>
+<li><p><strong>customjobid</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the custom id to give to the job.
+<strong>Default</strong>: The default names ARAM assigns to the jobs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.queuePickup">
+<span class="sig-name descname"><span class="pre">queuePickup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">missiongoal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">customjobid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyARCL.FleetManager.queuePickup" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a pickup mission to the AMR/FM and returns the <a class="reference internal" href="#PyARCL.Job" title="PyARCL.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> object
+related to said mission.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>missiongoal</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The mission goal the pickup job segment should
+be requesting.</p></li>
+<li><p><strong>priority</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The priority of the pickup job segment.
+<strong>Default</strong>: The default pickup priority as defined in config.</p></li>
+<li><p><strong>customjobid</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the custom id to give to the job.
+<strong>Default</strong>: The default names ARAM assigns to the jobs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.queuePickupDropoff">
+<span class="sig-name descname"><span class="pre">queuePickupDropoff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">missiongoal1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missiongoal2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">customjobid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyARCL.FleetManager.queuePickupDropoff" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a simple pickup-dropoff mission to the AMR/FM and returns the
+<a class="reference internal" href="#PyARCL.Job" title="PyARCL.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> object related to said mission.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>missiongoal1</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The mission goal related to the pickup
+job segment.</p></li>
+<li><p><strong>missiongoal2</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The mission goal related to the dropoff
+job segment.</p></li>
+<li><p><strong>priority1</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The priority of the pickup job segment.
+<strong>Default</strong>: The default pickup priority as defined in config.</p></li>
+<li><p><strong>priority2</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The priority of the dropoff job segment.
+<strong>Default</strong>: The default dropoff priority as defined in config.</p></li>
+<li><p><strong>customjobid</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the custom id to give to the job.
+<strong>Default</strong>: The default names ARAM assigns to the jobs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.queuelist">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">queuelist</span></span><a class="headerlink" href="#PyARCL.FleetManager.queuelist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the jobs in the queue;
+whether those are in progress, completed or cancelled.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.sectionlist">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sectionlist</span></span><a class="headerlink" href="#PyARCL.FleetManager.sectionlist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the sections
+in the AMR or FM configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.FleetManager.tripReset">
+<span class="sig-name descname"><span class="pre">tripReset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyARCL.FleetManager.tripReset" title="Permalink to this definition"></a></dt>
+<dd><p>Sends the tripReset command to the Robot / FleetManager object.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.GroupDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">GroupDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TL_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grouplist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TL_requests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">GeneralLog</span> <span class="pre">(INFO)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#GroupDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.GroupDict" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<p>Class that acts like a dictionary of datastore groups.</p>
+<p>This class acts like a dictionary, returning <a class="reference internal" href="#PyARCL.ParameterDict" title="PyARCL.ParameterDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParameterDict</span></code></a> container objects
+full of <a class="reference internal" href="#PyARCL.Parameter" title="PyARCL.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parameter</span></code></a> objects that fully describes an AMR or FM full datastore.
+This class it’s not meant to be used by the user, instead it is meant to be
+used by the datastore property in the <a class="reference internal" href="#PyARCL.FleetManager" title="PyARCL.FleetManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">FleetManager</span></code></a> and <a class="reference internal" href="#PyARCL.Robot" title="PyARCL.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a> objects.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.GroupDict.grouplist">
+<span class="sig-name descname"><span class="pre">grouplist</span></span><a class="headerlink" href="#PyARCL.GroupDict.grouplist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the groups
+in the AMR or FM datastore.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.GroupDict.TL_obj">
+<span class="sig-name descname"><span class="pre">TL_obj</span></span><a class="headerlink" href="#PyARCL.GroupDict.TL_obj" title="Permalink to this definition"></a></dt>
+<dd><p>Telnet server to send the command to.
+With PyARCL this can be done through the <a class="reference internal" href="#PyARCL.startserver" title="PyARCL.startserver"><code class="xref py py-func docutils literal notranslate"><span class="pre">startserver()</span></code></a> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Telnet</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.GroupDict.TL_requests">
+<span class="sig-name descname"><span class="pre">TL_requests</span></span><a class="headerlink" href="#PyARCL.GroupDict.TL_requests" title="Permalink to this definition"></a></dt>
+<dd><p>List of threads that are requesting
+access to the Telnet server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.GroupDict.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><a class="headerlink" href="#PyARCL.GroupDict.logger" title="Permalink to this definition"></a></dt>
+<dd><p>The logger to log to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.InputDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">InputDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TL_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TL_requests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">GeneralLog</span> <span class="pre">(INFO)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#InputDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.InputDict" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<p>Class that acts like a dictionary of input values.</p>
+<p>This class acts like a dictionary, returning input values when items are accessed.
+Input values are returned as booleans, True for on and False for off. The single
+input values can also be set, but this only works if the input value is actually
+an output having the type set as “customAlsoInput” in the AMR configuration.
+This class is not meant to be used by the user, instead it is meant to be
+accessed by the <a class="reference internal" href="#PyARCL.Robot.inputs" title="PyARCL.Robot.inputs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">inputs</span></code></a> property of the <a class="reference internal" href="#PyARCL.Robot" title="PyARCL.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a> objects.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.InputDict.inputlist">
+<span class="sig-name descname"><span class="pre">inputlist</span></span><a class="headerlink" href="#PyARCL.InputDict.inputlist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing all the names of the inputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.InputDict.TL_obj">
+<span class="sig-name descname"><span class="pre">TL_obj</span></span><a class="headerlink" href="#PyARCL.InputDict.TL_obj" title="Permalink to this definition"></a></dt>
+<dd><p>Telnet server to send the command to.
+With PyARCL this can be done through the <a class="reference internal" href="#PyARCL.startserver" title="PyARCL.startserver"><code class="xref py py-func docutils literal notranslate"><span class="pre">startserver()</span></code></a> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Telnet</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.InputDict.TL_requests">
+<span class="sig-name descname"><span class="pre">TL_requests</span></span><a class="headerlink" href="#PyARCL.InputDict.TL_requests" title="Permalink to this definition"></a></dt>
+<dd><p>List of threads that are requesting
+access to the Telnet server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.InputDict.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><a class="headerlink" href="#PyARCL.InputDict.logger" title="Permalink to this definition"></a></dt>
+<dd><p>The logger to log to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.Job">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">Job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TL_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jobid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">JobSegmentDictObject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TL_requests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">GeneralLog</span> <span class="pre">(INFO)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#Job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.Job" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class describing a job.</p>
+<p>This class describes a job, mostly contains basic informations and a dictionary
+containing its segments. It is meant to be used by other functions to return a
+Job object, it is not meant to be used by the user.
+The <code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code> object can be also used as it was a dictionary. When this happens, it
+defaults at pointing its <code class="xref py py-attr docutils literal notranslate"><span class="pre">jobsegments</span></code> attribute.
+E.g. Job.jobSegments[jobsegmentname] and Job[jobsegmentname] are essentially
+the same thing.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.Job.jobid">
+<span class="sig-name descname"><span class="pre">jobid</span></span><a class="headerlink" href="#PyARCL.Job.jobid" title="Permalink to this definition"></a></dt>
+<dd><p>The job unique id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.Job.idlist">
+<span class="sig-name descname"><span class="pre">idlist</span></span><a class="headerlink" href="#PyARCL.Job.idlist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the job segments
+that the job possesses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.Job.jobSegments">
+<span class="sig-name descname"><span class="pre">jobSegments</span></span><a class="headerlink" href="#PyARCL.Job.jobSegments" title="Permalink to this definition"></a></dt>
+<dd><p>Container that can be used to access
+all the job segments this job possesses as JobSegment objects. Acts
+like a dictionary returning JobSegment objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#PyARCL.JobSegmentDict" title="PyARCL.JobSegmentDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">JobSegmentDict</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.Job.TL_obj">
+<span class="sig-name descname"><span class="pre">TL_obj</span></span><a class="headerlink" href="#PyARCL.Job.TL_obj" title="Permalink to this definition"></a></dt>
+<dd><p>Telnet server to send the command to.
+With PyARCL this can be done through the <a class="reference internal" href="#PyARCL.startserver" title="PyARCL.startserver"><code class="xref py py-func docutils literal notranslate"><span class="pre">startserver()</span></code></a> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Telnet</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.Job.TL_requests">
+<span class="sig-name descname"><span class="pre">TL_requests</span></span><a class="headerlink" href="#PyARCL.Job.TL_requests" title="Permalink to this definition"></a></dt>
+<dd><p>List of threads that are requesting
+access to the Telnet server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.Job.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><a class="headerlink" href="#PyARCL.Job.logger" title="Permalink to this definition"></a></dt>
+<dd><p>The logger to log to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.Job.assignedrobot">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">assignedrobot</span></span><a class="headerlink" href="#PyARCL.Job.assignedrobot" title="Permalink to this definition"></a></dt>
+<dd><p>Robot that is assigned to this job. This is done by checking the
+robot assigned to the last job segment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.Job.cancel">
+<span class="sig-name descname"><span class="pre">cancel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#Job.cancel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.Job.cancel" title="Permalink to this definition"></a></dt>
+<dd><p>No arguments method that cancels the job.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.Job.iscomplete">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">iscomplete</span></span><a class="headerlink" href="#PyARCL.Job.iscomplete" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the job is completed or not.</p>
+<p>This is done by accessing the state of the last job segment and checking
+whether that is ‘Completed’ or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.JobDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">JobDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TL_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queuelist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapgoallist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TL_requests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">GeneralLog</span> <span class="pre">(INFO)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#JobDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.JobDict" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<p>Container acting as a dictionary that returns <a class="reference internal" href="#PyARCL.Job" title="PyARCL.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> objects.</p>
+<p>Class not meant to be used by the user. It is used to make the queue property
+work for both the <a class="reference internal" href="#PyARCL.Robot" title="PyARCL.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a> and <a class="reference internal" href="#PyARCL.FleetManager" title="PyARCL.FleetManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">FleetManager</span></code></a> classes.
+This class behaves like a dictionary. Note that thanks to the <a class="reference internal" href="#PyARCL.JobSegment" title="PyARCL.JobSegment"><code class="xref py py-class docutils literal notranslate"><span class="pre">JobSegment</span></code></a> class
+allowing to be accessed like a dictionary (defaulting to the <a class="reference internal" href="#PyARCL.Job.jobSegments" title="PyARCL.Job.jobSegments"><code class="xref py py-attr docutils literal notranslate"><span class="pre">jobSegments</span></code></a>) object
+the grammar to access a single job segment can be nested.
+E.g. JobDictObject[jobname][jobsegmentname] is essentially identical to
+JobDictObject[jobname].jobsegments[jobsegmentname]</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.JobDict.queuelist">
+<span class="sig-name descname"><span class="pre">queuelist</span></span><a class="headerlink" href="#PyARCL.JobDict.queuelist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the jobs
+currently in the queue</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.JobDict.TL_obj">
+<span class="sig-name descname"><span class="pre">TL_obj</span></span><a class="headerlink" href="#PyARCL.JobDict.TL_obj" title="Permalink to this definition"></a></dt>
+<dd><p>Telnet server to send the command to.
+With PyARCL this can be done through the <a class="reference internal" href="#PyARCL.startserver" title="PyARCL.startserver"><code class="xref py py-func docutils literal notranslate"><span class="pre">startserver()</span></code></a> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Telnet</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.JobDict.TL_requests">
+<span class="sig-name descname"><span class="pre">TL_requests</span></span><a class="headerlink" href="#PyARCL.JobDict.TL_requests" title="Permalink to this definition"></a></dt>
+<dd><p>List of threads that are requesting
+access to the Telnet server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.JobDict.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><a class="headerlink" href="#PyARCL.JobDict.logger" title="Permalink to this definition"></a></dt>
+<dd><p>The logger to log to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.JobSegment">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">JobSegment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TL_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jobid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapgoallist=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TL_requests=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">GeneralLog</span> <span class="pre">(INFO)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#JobSegment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.JobSegment" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class describing a job segment.</p>
+<p>This class describes a job segment, it is meant to be used to make other
+functions return JobSegment objects, not to be used by the user directly.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.JobSegment.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#PyARCL.JobSegment.id" title="Permalink to this definition"></a></dt>
+<dd><p>The job segment unique id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.JobSegment.jobid">
+<span class="sig-name descname"><span class="pre">jobid</span></span><a class="headerlink" href="#PyARCL.JobSegment.jobid" title="Permalink to this definition"></a></dt>
+<dd><p>The job id this job segment belongs to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.JobSegment.TL_obj">
+<span class="sig-name descname"><span class="pre">TL_obj</span></span><a class="headerlink" href="#PyARCL.JobSegment.TL_obj" title="Permalink to this definition"></a></dt>
+<dd><p>Telnet server to send the command to.
+With PyARCL this can be done through the <a class="reference internal" href="#PyARCL.startserver" title="PyARCL.startserver"><code class="xref py py-func docutils literal notranslate"><span class="pre">startserver()</span></code></a> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Telnet</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.JobSegment.TL_requests">
+<span class="sig-name descname"><span class="pre">TL_requests</span></span><a class="headerlink" href="#PyARCL.JobSegment.TL_requests" title="Permalink to this definition"></a></dt>
+<dd><p>List of threads that are requesting
+access to the Telnet server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.JobSegment.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><a class="headerlink" href="#PyARCL.JobSegment.logger" title="Permalink to this definition"></a></dt>
+<dd><p>The logger to log to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.JobSegment.assignedrobot">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">assignedrobot</span></span><a class="headerlink" href="#PyARCL.JobSegment.assignedrobot" title="Permalink to this definition"></a></dt>
+<dd><p>The unique id of the AMR that is assigned to the job segment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.JobSegment.failnumber">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">failnumber</span></span><a class="headerlink" href="#PyARCL.JobSegment.failnumber" title="Permalink to this definition"></a></dt>
+<dd><p>Number of times the job segment has failed before.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.JobSegment.finishedtime">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">finishedtime</span></span><a class="headerlink" href="#PyARCL.JobSegment.finishedtime" title="Permalink to this definition"></a></dt>
+<dd><p>Time at which the job segment was completed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Datetime object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.JobSegment.goal">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">goal</span></span><a class="headerlink" href="#PyARCL.JobSegment.goal" title="Permalink to this definition"></a></dt>
+<dd><p>The map goal the job segment is associated with.</p>
+<p>Can be set: Setting this goal to another in map will result as such
+if the job segment is not completed yet. Will raise an exception if
+the new goal does not exist in map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.JobSegment.priority">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">priority</span></span><a class="headerlink" href="#PyARCL.JobSegment.priority" title="Permalink to this definition"></a></dt>
+<dd><p>The priority value of the job segment.</p>
+<p>Can be set: Setting the priority to another value will result as such
+if the job segment is not completed yet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.JobSegment.queuedtime">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">queuedtime</span></span><a class="headerlink" href="#PyARCL.JobSegment.queuedtime" title="Permalink to this definition"></a></dt>
+<dd><p>Time at which the job segment was successfully accepted
+by the AMR or FM queuing manager.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Datetime object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.JobSegment.state">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">state</span></span><a class="headerlink" href="#PyARCL.JobSegment.state" title="Permalink to this definition"></a></dt>
+<dd><p>The job state as described by ARAM.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.JobSegment.substate">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">substate</span></span><a class="headerlink" href="#PyARCL.JobSegment.substate" title="Permalink to this definition"></a></dt>
+<dd><p>The job substate as described by ARAM.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.JobSegment.type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#PyARCL.JobSegment.type" title="Permalink to this definition"></a></dt>
+<dd><p>Type of job segment. Can be either pickup or dropoff.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.JobSegmentDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">JobSegmentDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TL_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jobid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapgoallist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TL_requests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">GeneralLog</span> <span class="pre">(INFO)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#JobSegmentDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.JobSegmentDict" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<p>Container acting as a dictionary that returns <a class="reference internal" href="#PyARCL.JobSegment" title="PyARCL.JobSegment"><code class="xref py py-class docutils literal notranslate"><span class="pre">JobSegment</span></code></a> objects.</p>
+<p>Class not meant to be used by the user. It is used to generate the <a class="reference internal" href="#PyARCL.JobSegment" title="PyARCL.JobSegment"><code class="xref py py-class docutils literal notranslate"><span class="pre">JobSegment</span></code></a>
+objects that are contained within the <a class="reference internal" href="#PyARCL.Job" title="PyARCL.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> objects.
+This class behaves like a dictionary.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.JobSegmentDict.jobid">
+<span class="sig-name descname"><span class="pre">jobid</span></span><a class="headerlink" href="#PyARCL.JobSegmentDict.jobid" title="Permalink to this definition"></a></dt>
+<dd><p>The job unique id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.JobSegmentDict.idlist">
+<span class="sig-name descname"><span class="pre">idlist</span></span><a class="headerlink" href="#PyARCL.JobSegmentDict.idlist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the job segments
+that the job possesses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.JobSegmentDict.TL_obj">
+<span class="sig-name descname"><span class="pre">TL_obj</span></span><a class="headerlink" href="#PyARCL.JobSegmentDict.TL_obj" title="Permalink to this definition"></a></dt>
+<dd><p>Telnet server to send the command to.
+With PyARCL this can be done through the <a class="reference internal" href="#PyARCL.startserver" title="PyARCL.startserver"><code class="xref py py-func docutils literal notranslate"><span class="pre">startserver()</span></code></a> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Telnet</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.JobSegmentDict.TL_requests">
+<span class="sig-name descname"><span class="pre">TL_requests</span></span><a class="headerlink" href="#PyARCL.JobSegmentDict.TL_requests" title="Permalink to this definition"></a></dt>
+<dd><p>List of threads that are requesting
+access to the Telnet server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.JobSegmentDict.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><a class="headerlink" href="#PyARCL.JobSegmentDict.logger" title="Permalink to this definition"></a></dt>
+<dd><p>The logger to log to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">MasterAMR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">IP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'adept'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7171</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autostart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'info'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#MasterAMR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.MasterAMR" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Parent class of <a class="reference internal" href="#PyARCL.Robot" title="PyARCL.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a> and <a class="reference internal" href="#PyARCL.FleetManager" title="PyARCL.FleetManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">FleetManager</span></code></a>, used for inheritance purposes.</p>
+<p>This class was create to store all properties and methods common for both the
+user classes ‘<a class="reference internal" href="#PyARCL.Robot" title="PyARCL.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a>’ and ‘<a class="reference internal" href="#PyARCL.FleetManager" title="PyARCL.FleetManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">FleetManager</span></code></a>’. Everything that can be used by both an
+EM or AMR is found inside here instead of duplicating everything in the two
+classes. Therefore, this class is absolutely not meant to be used by the user,
+instead it’s just a parent class that is used for practicality purposes.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.IP_address">
+<span class="sig-name descname"><span class="pre">IP_address</span></span><a class="headerlink" href="#PyARCL.MasterAMR.IP_address" title="Permalink to this definition"></a></dt>
+<dd><p>The IP address of the appliance, inserted as a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.password">
+<span class="sig-name descname"><span class="pre">password</span></span><a class="headerlink" href="#PyARCL.MasterAMR.password" title="Permalink to this definition"></a></dt>
+<dd><p>The user-created password of the ARCL Telnet server, as
+defined in MobilePlanner.
+<strong>Default</strong>: adept</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.commport">
+<span class="sig-name descname"><span class="pre">commport</span></span><a class="headerlink" href="#PyARCL.MasterAMR.commport" title="Permalink to this definition"></a></dt>
+<dd><p>The port used by the appliance to communicate through ARCL.
+<strong>Default</strong>: 7171</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.autostart">
+<span class="sig-name descname"><span class="pre">autostart</span></span><a class="headerlink" href="#PyARCL.MasterAMR.autostart" title="Permalink to this definition"></a></dt>
+<dd><p>Flag that defines whether or not to “autostart” the object
+when the class is instantiated. It’s True by default, setting it to
+False does not start the Telnet communication at object instantiation and
+should only be used for debugging purposes.
+<strong>Default</strong>: True</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.TL_requests">
+<span class="sig-name descname"><span class="pre">TL_requests</span></span><a class="headerlink" href="#PyARCL.MasterAMR.TL_requests" title="Permalink to this definition"></a></dt>
+<dd><p>List of threads that are requesting
+access to the Telnet server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.TL_obj">
+<span class="sig-name descname"><span class="pre">TL_obj</span></span><a class="headerlink" href="#PyARCL.MasterAMR.TL_obj" title="Permalink to this definition"></a></dt>
+<dd><p>Telnet server to send the command to.
+With PyARCL this can be done through the <a class="reference internal" href="#PyARCL.startserver" title="PyARCL.startserver"><code class="xref py py-func docutils literal notranslate"><span class="pre">startserver()</span></code></a> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Telnet</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><a class="headerlink" href="#PyARCL.MasterAMR.logger" title="Permalink to this definition"></a></dt>
+<dd><p>The logger to log to. This is generated
+as the object is instantiated and is unique per-object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.loglevel">
+<span class="sig-name descname"><span class="pre">loglevel</span></span><a class="headerlink" href="#PyARCL.MasterAMR.loglevel" title="Permalink to this definition"></a></dt>
+<dd><p>String that represents the log level requested for the object.
+Possible values are ‘debug’, ‘info’, ‘warning’, ‘error’, ‘critical’.
+<strong>Default</strong>: INFO level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.config">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#PyARCL.MasterAMR.config" title="Permalink to this definition"></a></dt>
+<dd><p>Container acting like a dictionary of
+<a class="reference internal" href="#PyARCL.ParameterDict" title="PyARCL.ParameterDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParameterDict</span></code></a> objects. Keys are the names of the sections, which can
+be accessed through the <a class="reference internal" href="#PyARCL.MasterAMR.sectionlist" title="PyARCL.MasterAMR.sectionlist"><code class="xref py py-class docutils literal notranslate"><span class="pre">sectionlist</span></code></a> property. Allows iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#PyARCL.SectionDict" title="PyARCL.SectionDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">SectionDict</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.datastore">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">datastore</span></span><a class="headerlink" href="#PyARCL.MasterAMR.datastore" title="Permalink to this definition"></a></dt>
+<dd><p>Container acting like a dictionary of
+<a class="reference internal" href="#PyARCL.ParameterDict" title="PyARCL.ParameterDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParameterDict</span></code></a> objects. Keys are the names of the groups, which can
+be accessed through the <a class="reference internal" href="#PyARCL.MasterAMR.grouplist" title="PyARCL.MasterAMR.grouplist"><code class="xref py py-class docutils literal notranslate"><span class="pre">grouplist</span></code></a> property. Allows iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#PyARCL.GroupDict" title="PyARCL.GroupDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">GroupDict</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.datetime">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">datetime</span></span><a class="headerlink" href="#PyARCL.MasterAMR.datetime" title="Permalink to this definition"></a></dt>
+<dd><p>get current time of the client in DateTime
+time format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.goallist">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">goallist</span></span><a class="headerlink" href="#PyARCL.MasterAMR.goallist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the goals present in map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.grouplist">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grouplist</span></span><a class="headerlink" href="#PyARCL.MasterAMR.grouplist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the groups in the AMR
+or FM datastore.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.queue">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">queue</span></span><a class="headerlink" href="#PyARCL.MasterAMR.queue" title="Permalink to this definition"></a></dt>
+<dd><p>Container acting like a dictionary of <a class="reference internal" href="#PyARCL.JobDict" title="PyARCL.JobDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">JobDict</span></code></a> objects.
+Keys are the unique ids of the jobs, which can be accessed through the
+<a class="reference internal" href="#PyARCL.MasterAMR.queuelist" title="PyARCL.MasterAMR.queuelist"><code class="xref py py-attr docutils literal notranslate"><span class="pre">queuelist</span></code></a> property. Allows iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#PyARCL.JobDict" title="PyARCL.JobDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">JobDict</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.queueMulti">
+<span class="sig-name descname"><span class="pre">queueMulti</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">missiongoallist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">typelist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prioritylist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">customjobid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#MasterAMR.queueMulti"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.MasterAMR.queueMulti" title="Permalink to this definition"></a></dt>
+<dd><p>General-purpose method to generate complex jobs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>missiongoallist</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – list containing the goal sequence
+of the needed job segments. The list can contain any number of
+goals, with an upper limit of NEED_TO_CHECK.
+For easiness of use, this parameter can be inserted as a simple
+string; if that is the case, a simple pickup job is created.</p></li>
+<li><p><strong>typelist</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – list containing the job segment type for
+each requested goal. the job segment type can be either ‘Pickup’
+or ‘Dropoff’.
+<strong>Default</strong>: If typelist is not specified, the job segment types
+are assumed to alternate between pickup and dropoff for all
+job segments.</p></li>
+<li><p><strong>prioritylist</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – list containing the priorities for
+each job segment.
+<strong>Default</strong>: If prioritylist is not specified, the priorities for
+all job segment types are assumed to be the default as
+defined in the config.</p></li>
+<li><p><strong>customjobid</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the custom id to give to the job.
+<strong>Default</strong>: The default names ARAM assigns to the jobs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.queuePickup">
+<span class="sig-name descname"><span class="pre">queuePickup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">missiongoal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">customjobid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#MasterAMR.queuePickup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.MasterAMR.queuePickup" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a pickup mission to the AMR/FM and returns the <a class="reference internal" href="#PyARCL.Job" title="PyARCL.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> object
+related to said mission.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>missiongoal</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The mission goal the pickup job segment should
+be requesting.</p></li>
+<li><p><strong>priority</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The priority of the pickup job segment.
+<strong>Default</strong>: The default pickup priority as defined in config.</p></li>
+<li><p><strong>customjobid</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the custom id to give to the job.
+<strong>Default</strong>: The default names ARAM assigns to the jobs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.queuePickupDropoff">
+<span class="sig-name descname"><span class="pre">queuePickupDropoff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">missiongoal1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missiongoal2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">customjobid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#MasterAMR.queuePickupDropoff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.MasterAMR.queuePickupDropoff" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a simple pickup-dropoff mission to the AMR/FM and returns the
+<a class="reference internal" href="#PyARCL.Job" title="PyARCL.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> object related to said mission.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>missiongoal1</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The mission goal related to the pickup
+job segment.</p></li>
+<li><p><strong>missiongoal2</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The mission goal related to the dropoff
+job segment.</p></li>
+<li><p><strong>priority1</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The priority of the pickup job segment.
+<strong>Default</strong>: The default pickup priority as defined in config.</p></li>
+<li><p><strong>priority2</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The priority of the dropoff job segment.
+<strong>Default</strong>: The default dropoff priority as defined in config.</p></li>
+<li><p><strong>customjobid</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the custom id to give to the job.
+<strong>Default</strong>: The default names ARAM assigns to the jobs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.queuelist">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">queuelist</span></span><a class="headerlink" href="#PyARCL.MasterAMR.queuelist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the jobs in the queue;
+whether those are in progress, completed or cancelled.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.sectionlist">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sectionlist</span></span><a class="headerlink" href="#PyARCL.MasterAMR.sectionlist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the sections
+in the AMR or FM configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.MasterAMR.tripReset">
+<span class="sig-name descname"><span class="pre">tripReset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#MasterAMR.tripReset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.MasterAMR.tripReset" title="Permalink to this definition"></a></dt>
+<dd><p>Sends the tripReset command to the Robot / FleetManager object.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.OutputDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">OutputDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TL_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TL_requests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">GeneralLog</span> <span class="pre">(INFO)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#OutputDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.OutputDict" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<p>Class that acts like a dictionary of output values.</p>
+<p>This class acts like a dictionary, returning output values when items are accessed.
+Output values are returned as booleans, True for on and False for off. The single
+output values can also be set, and this affects the actual state of the output
+in the AMR.
+This class is not meant to be used by the user, instead it is meant to be
+accessed by the <a class="reference internal" href="#PyARCL.Robot.outputs" title="PyARCL.Robot.outputs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">outputs</span></code></a> property of the <a class="reference internal" href="#PyARCL.Robot" title="PyARCL.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a> objects.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.OutputDict.outputlist">
+<span class="sig-name descname"><span class="pre">outputlist</span></span><a class="headerlink" href="#PyARCL.OutputDict.outputlist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing all the names of the outputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.OutputDict.TL_obj">
+<span class="sig-name descname"><span class="pre">TL_obj</span></span><a class="headerlink" href="#PyARCL.OutputDict.TL_obj" title="Permalink to this definition"></a></dt>
+<dd><p>Telnet server to send the command to.
+With PyARCL this can be done through the <a class="reference internal" href="#PyARCL.startserver" title="PyARCL.startserver"><code class="xref py py-func docutils literal notranslate"><span class="pre">startserver()</span></code></a> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Telnet</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.OutputDict.TL_requests">
+<span class="sig-name descname"><span class="pre">TL_requests</span></span><a class="headerlink" href="#PyARCL.OutputDict.TL_requests" title="Permalink to this definition"></a></dt>
+<dd><p>List of threads that are requesting
+access to the Telnet server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.OutputDict.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><a class="headerlink" href="#PyARCL.OutputDict.logger" title="Permalink to this definition"></a></dt>
+<dd><p>The logger to log to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.Parameter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">Parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TL_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paramname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sectionname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rawvalue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">GeneralLog</span> <span class="pre">(INFO)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#Parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.Parameter" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class that describes a datastore parameter.</p>
+<p>This class describes a data parameter coming from datastore. It is not meant
+to be used by the user, instead it is meant to be used by the datastore functions.’</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.Parameter.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#PyARCL.Parameter.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.ParameterDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">ParameterDict</span></span><a class="reference internal" href="_modules/PyARCL.html#ParameterDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.ParameterDict" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<p>Dictionary of parameters that access the value property when accessing items.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.Robot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">Robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">IP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'adept'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7171</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autostart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'info'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#Robot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.Robot" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyARCL.MasterAMR" title="PyARCL.MasterAMR"><code class="xref py py-class docutils literal notranslate"><span class="pre">MasterAMR</span></code></a></p>
+<p>Class describing an Autonomous Mobile Robot.</p>
+<p>This class is the class the user should use to communicate with an Autonomous
+Mobile Robot.
+Use the Robot objects to access status, IO, configuration, datastore, job queue
+and other useful data or to request new jobs, modify configuration parameters,
+force IO values, and command the Robot directly with methods like dock and goto.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.Robot.IP_address">
+<span class="sig-name descname"><span class="pre">IP_address</span></span><a class="headerlink" href="#PyARCL.Robot.IP_address" title="Permalink to this definition"></a></dt>
+<dd><p>The IP address of the appliance, inserted as a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.Robot.password">
+<span class="sig-name descname"><span class="pre">password</span></span><a class="headerlink" href="#PyARCL.Robot.password" title="Permalink to this definition"></a></dt>
+<dd><p>The user-created password of the ARCL Telnet server, as
+defined in MobilePlanner.
+<strong>Default</strong>: adept</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.Robot.commport">
+<span class="sig-name descname"><span class="pre">commport</span></span><a class="headerlink" href="#PyARCL.Robot.commport" title="Permalink to this definition"></a></dt>
+<dd><p>The port used by the appliance to communicate through ARCL.
+<strong>Default</strong>: 7171</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.Robot.loglevel">
+<span class="sig-name descname"><span class="pre">loglevel</span></span><a class="headerlink" href="#PyARCL.Robot.loglevel" title="Permalink to this definition"></a></dt>
+<dd><p>String that represents the log level requested for the object.
+Possible values are ‘debug’, ‘info’, ‘warning’, ‘error’, ‘critical’.
+<strong>Default</strong>: INFO level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.Robot.config">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#PyARCL.Robot.config" title="Permalink to this definition"></a></dt>
+<dd><p>Container acting like a dictionary of
+<a class="reference internal" href="#PyARCL.ParameterDict" title="PyARCL.ParameterDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParameterDict</span></code></a> objects. Keys are the names of the sections, which can
+be accessed through the <a class="reference internal" href="#PyARCL.MasterAMR.sectionlist" title="PyARCL.MasterAMR.sectionlist"><code class="xref py py-class docutils literal notranslate"><span class="pre">sectionlist</span></code></a> property. Allows iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#PyARCL.SectionDict" title="PyARCL.SectionDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">SectionDict</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.Robot.datastore">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">datastore</span></span><a class="headerlink" href="#PyARCL.Robot.datastore" title="Permalink to this definition"></a></dt>
+<dd><p>Container acting like a dictionary of
+<a class="reference internal" href="#PyARCL.ParameterDict" title="PyARCL.ParameterDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParameterDict</span></code></a> objects. Keys are the names of the groups, which can
+be accessed through the <a class="reference internal" href="#PyARCL.MasterAMR.grouplist" title="PyARCL.MasterAMR.grouplist"><code class="xref py py-class docutils literal notranslate"><span class="pre">grouplist</span></code></a> property. Allows iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#PyARCL.GroupDict" title="PyARCL.GroupDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">GroupDict</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.Robot.datetime">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">datetime</span></span><a class="headerlink" href="#PyARCL.Robot.datetime" title="Permalink to this definition"></a></dt>
+<dd><p>get current time of the client in DateTime
+time format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.Robot.dock">
+<span class="sig-name descname"><span class="pre">dock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#Robot.dock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.Robot.dock" title="Permalink to this definition"></a></dt>
+<dd><p>Method that instructs the robot to dock.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.Robot.dotask">
+<span class="sig-name descname"><span class="pre">dotask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#Robot.dotask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.Robot.dotask" title="Permalink to this definition"></a></dt>
+<dd><p>Method that instructs the robot to perform a task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>task</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Name of the task to do.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.Robot.executemacro">
+<span class="sig-name descname"><span class="pre">executemacro</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">macro</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#Robot.executemacro"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.Robot.executemacro" title="Permalink to this definition"></a></dt>
+<dd><p>Method that instructs the robot to run a macro.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>macro</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Name of the macro to execute.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.Robot.goallist">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">goallist</span></span><a class="headerlink" href="#PyARCL.Robot.goallist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the goals present in map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.Robot.goto">
+<span class="sig-name descname"><span class="pre">goto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#Robot.goto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.Robot.goto" title="Permalink to this definition"></a></dt>
+<dd><p>Method that instructs the robot to go to a map goal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>goal</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The goal to go to. Will raise exception if goal is
+not in the list returned by the <a class="reference internal" href="#PyARCL.Robot.goallist" title="PyARCL.Robot.goallist"><code class="xref py py-attr docutils literal notranslate"><span class="pre">goallist</span></code></a> property (i.e. not in map).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.Robot.grouplist">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grouplist</span></span><a class="headerlink" href="#PyARCL.Robot.grouplist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the groups in the AMR
+or FM datastore.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.Robot.inputlist">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">inputlist</span></span><a class="headerlink" href="#PyARCL.Robot.inputlist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing all the names of the inputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.Robot.inputs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">inputs</span></span><a class="headerlink" href="#PyARCL.Robot.inputs" title="Permalink to this definition"></a></dt>
+<dd><p>Container acting as a dictionary of input values.</p>
+<p>Keys are the input names, which can be accessed through the <a class="reference internal" href="#PyARCL.Robot.inputlist" title="PyARCL.Robot.inputlist"><code class="xref py py-attr docutils literal notranslate"><span class="pre">inputlist</span></code></a>
+property. Allows iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#PyARCL.InputDict" title="PyARCL.InputDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputDict</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.Robot.outputlist">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">outputlist</span></span><a class="headerlink" href="#PyARCL.Robot.outputlist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing all the names of the outputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.Robot.outputs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">outputs</span></span><a class="headerlink" href="#PyARCL.Robot.outputs" title="Permalink to this definition"></a></dt>
+<dd><p>Container acting as a dictionary of output values.</p>
+<p>Keys are the output names, which can be accessed through the <a class="reference internal" href="#PyARCL.Robot.outputlist" title="PyARCL.Robot.outputlist"><code class="xref py py-attr docutils literal notranslate"><span class="pre">outputlist</span></code></a>
+property. Allows iteration. Outputs can be set to a boolean to force
+their value in the real robot.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.Robot.queue">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">queue</span></span><a class="headerlink" href="#PyARCL.Robot.queue" title="Permalink to this definition"></a></dt>
+<dd><p>Container acting like a dictionary of <a class="reference internal" href="#PyARCL.JobDict" title="PyARCL.JobDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">JobDict</span></code></a> objects.
+Keys are the unique ids of the jobs, which can be accessed through the
+<a class="reference internal" href="#PyARCL.MasterAMR.queuelist" title="PyARCL.MasterAMR.queuelist"><code class="xref py py-attr docutils literal notranslate"><span class="pre">queuelist</span></code></a> property. Allows iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#PyARCL.JobDict" title="PyARCL.JobDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">JobDict</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.Robot.queueDropoff">
+<span class="sig-name descname"><span class="pre">queueDropoff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">missiongoal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">customjobid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#Robot.queueDropoff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.Robot.queueDropoff" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a dropoff mission to the AMR/FM and returns the <a class="reference internal" href="#PyARCL.Job" title="PyARCL.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> object
+related to said mission. Note that this is the only queue command available
+to a robot connected to a Fleet Manager.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>missiongoal</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The mission goal the dropoff job segment should
+be requesting.</p></li>
+<li><p><strong>priority</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The priority of the dropoff job segment.
+<strong>Default</strong>: The default dropoff priority as defined in config.</p></li>
+<li><p><strong>customjobid</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the custom id to give to the job.
+<strong>Default</strong>: The default names ARAM assigns to the jobs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.Robot.queueMulti">
+<span class="sig-name descname"><span class="pre">queueMulti</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">missiongoallist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">typelist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prioritylist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">customjobid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyARCL.Robot.queueMulti" title="Permalink to this definition"></a></dt>
+<dd><p>General-purpose method to generate complex jobs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>missiongoallist</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – list containing the goal sequence
+of the needed job segments. The list can contain any number of
+goals, with an upper limit of NEED_TO_CHECK.
+For easiness of use, this parameter can be inserted as a simple
+string; if that is the case, a simple pickup job is created.</p></li>
+<li><p><strong>typelist</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – list containing the job segment type for
+each requested goal. the job segment type can be either ‘Pickup’
+or ‘Dropoff’.
+<strong>Default</strong>: If typelist is not specified, the job segment types
+are assumed to alternate between pickup and dropoff for all
+job segments.</p></li>
+<li><p><strong>prioritylist</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – list containing the priorities for
+each job segment.
+<strong>Default</strong>: If prioritylist is not specified, the priorities for
+all job segment types are assumed to be the default as
+defined in the config.</p></li>
+<li><p><strong>customjobid</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the custom id to give to the job.
+<strong>Default</strong>: The default names ARAM assigns to the jobs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.Robot.queuePickup">
+<span class="sig-name descname"><span class="pre">queuePickup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">missiongoal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">customjobid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyARCL.Robot.queuePickup" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a pickup mission to the AMR/FM and returns the <a class="reference internal" href="#PyARCL.Job" title="PyARCL.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> object
+related to said mission.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>missiongoal</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The mission goal the pickup job segment should
+be requesting.</p></li>
+<li><p><strong>priority</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The priority of the pickup job segment.
+<strong>Default</strong>: The default pickup priority as defined in config.</p></li>
+<li><p><strong>customjobid</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the custom id to give to the job.
+<strong>Default</strong>: The default names ARAM assigns to the jobs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.Robot.queuePickupDropoff">
+<span class="sig-name descname"><span class="pre">queuePickupDropoff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">missiongoal1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missiongoal2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">customjobid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyARCL.Robot.queuePickupDropoff" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a simple pickup-dropoff mission to the AMR/FM and returns the
+<a class="reference internal" href="#PyARCL.Job" title="PyARCL.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> object related to said mission.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>missiongoal1</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The mission goal related to the pickup
+job segment.</p></li>
+<li><p><strong>missiongoal2</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The mission goal related to the dropoff
+job segment.</p></li>
+<li><p><strong>priority1</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The priority of the pickup job segment.
+<strong>Default</strong>: The default pickup priority as defined in config.</p></li>
+<li><p><strong>priority2</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The priority of the dropoff job segment.
+<strong>Default</strong>: The default dropoff priority as defined in config.</p></li>
+<li><p><strong>customjobid</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the custom id to give to the job.
+<strong>Default</strong>: The default names ARAM assigns to the jobs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.Robot.queuelist">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">queuelist</span></span><a class="headerlink" href="#PyARCL.Robot.queuelist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the jobs in the queue;
+whether those are in progress, completed or cancelled.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.Robot.sectionlist">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sectionlist</span></span><a class="headerlink" href="#PyARCL.Robot.sectionlist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the sections
+in the AMR or FM configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyARCL.Robot.status">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#PyARCL.Robot.status" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Status object containing informations
+about the robot status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#PyARCL.Status" title="PyARCL.Status"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Status</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.Robot.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#Robot.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.Robot.stop" title="Permalink to this definition"></a></dt>
+<dd><p>Method that instructs the robot to stop.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.Robot.tripReset">
+<span class="sig-name descname"><span class="pre">tripReset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyARCL.Robot.tripReset" title="Permalink to this definition"></a></dt>
+<dd><p>Sends the tripReset command to the Robot / FleetManager object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.Robot.undock">
+<span class="sig-name descname"><span class="pre">undock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#Robot.undock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.Robot.undock" title="Permalink to this definition"></a></dt>
+<dd><p>Method that instructs the robot to undock.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.RobotDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">RobotDict</span></span><a class="reference internal" href="_modules/PyARCL.html#RobotDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.RobotDict" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<p>This class is just a dictionary class with custom __repr__.</p>
+<p>This class is used by the <a class="reference internal" href="#PyARCL.FleetManager" title="PyARCL.FleetManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">FleetManager</span></code></a>’s <code class="xref py py-attr docutils literal notranslate"><span class="pre">robots</span></code> attribute, which is a dictionary
+of <a class="reference internal" href="#PyARCL.Robot" title="PyARCL.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a> objects. It’s exactly equal to a dictionary with a custom representation
+method to make it readeable by humans.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.SectionDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">SectionDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sectionlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TL_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TL_requests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">GeneralLog</span> <span class="pre">(INFO)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#SectionDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.SectionDict" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<p>Class that acts like a dictionary of configuration sections.</p>
+<p>This class acts like a dictionary, returning ParameterDict container objects
+full of <a class="reference internal" href="#PyARCL.ConfigParameter" title="PyARCL.ConfigParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigParameter</span></code></a> objects that fully describes an AMR or FM full config.
+This class it’s not meant to be used by the user, instead it is meant to be
+used by the config property in the <a class="reference internal" href="#PyARCL.FleetManager" title="PyARCL.FleetManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">FleetManager</span></code></a> and <a class="reference internal" href="#PyARCL.Robot" title="PyARCL.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a> objects.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.SectionDict.sectionlist">
+<span class="sig-name descname"><span class="pre">sectionlist</span></span><a class="headerlink" href="#PyARCL.SectionDict.sectionlist" title="Permalink to this definition"></a></dt>
+<dd><p>List containing the names of all the sections
+in the AMR or FM configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.SectionDict.TL_obj">
+<span class="sig-name descname"><span class="pre">TL_obj</span></span><a class="headerlink" href="#PyARCL.SectionDict.TL_obj" title="Permalink to this definition"></a></dt>
+<dd><p>Telnet server to send the command to.
+With PyARCL this can be done through the <a class="reference internal" href="#PyARCL.startserver" title="PyARCL.startserver"><code class="xref py py-func docutils literal notranslate"><span class="pre">startserver()</span></code></a> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Telnet</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.SectionDict.TL_requests">
+<span class="sig-name descname"><span class="pre">TL_requests</span></span><a class="headerlink" href="#PyARCL.SectionDict.TL_requests" title="Permalink to this definition"></a></dt>
+<dd><p>List of threads that are requesting
+access to the Telnet server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.SectionDict.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><a class="headerlink" href="#PyARCL.SectionDict.logger" title="Permalink to this definition"></a></dt>
+<dd><p>The logger to log to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.Status">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">Status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status_string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stateofcharge_string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">localizationscore_string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature_string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#Status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.Status" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class describing informations about the robot status.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.Status.aramstatus">
+<span class="sig-name descname"><span class="pre">aramstatus</span></span><a class="headerlink" href="#PyARCL.Status.aramstatus" title="Permalink to this definition"></a></dt>
+<dd><p>The status of the robot as described by ARAM</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.Status.location">
+<span class="sig-name descname"><span class="pre">location</span></span><a class="headerlink" href="#PyARCL.Status.location" title="Permalink to this definition"></a></dt>
+<dd><p>List containing in order X Y and Heading
+of the robot current position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.Status.locscore">
+<span class="sig-name descname"><span class="pre">locscore</span></span><a class="headerlink" href="#PyARCL.Status.locscore" title="Permalink to this definition"></a></dt>
+<dd><p>The localization score of the robot. The value
+can go from 0 (worst) to 100 (best).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyARCL.Status.temperature">
+<span class="sig-name descname"><span class="pre">temperature</span></span><a class="headerlink" href="#PyARCL.Status.temperature" title="Permalink to this definition"></a></dt>
+<dd><p>The CPU current temperature in Celsius degrees.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyARCL.TLrequest">
+<span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">TLrequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#TLrequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.TLrequest" title="Permalink to this definition"></a></dt>
+<dd><p>Decorator to handle mutex operations in multithreading access to Telnet server.</p>
+<p>This function is meant to be used as a decorator for the MasterAMR class
+and subclasses to allow for ordered multi-threading access to the
+Telnet textserver.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyARCL.TelnetRequestThread">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">TelnetRequestThread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TL_requests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#TelnetRequestThread"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.TelnetRequestThread" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
+<p>Class that describes a thread with custom mutex functionality.</p>
+<p>This class is meant to be used by the TLrequest function.
+Inherits most properties from the threading.Thread class.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyARCL.TelnetRequestThread.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#TelnetRequestThread.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.TelnetRequestThread.run" title="Permalink to this definition"></a></dt>
+<dd><p>Method representing the thread’s activity.</p>
+<p>You may override this method in a subclass. The standard run() method
+invokes the callable object passed to the object’s constructor as the
+target argument, if any, with sequential and keyword arguments taken
+from the args and kwargs arguments, respectively.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyARCL.find_nth">
+<span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">find_nth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">haystack</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">needle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#find_nth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.find_nth" title="Permalink to this definition"></a></dt>
+<dd><p>Finds the nth element index inside a container.</p>
+<p>Fuction used to find the nth occurrance of an element inside a container
+and returns its index. Taken by BitFlip response on StackOverflow
+(<a class="reference external" href="https://stackoverflow.com/questions/73902551">https://stackoverflow.com/questions/73902551</a>).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyARCL.findline">
+<span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">findline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TL_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout=50000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_exceptions=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">GeneralLog</span> <span class="pre">(INFO)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#findline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.findline" title="Permalink to this definition"></a></dt>
+<dd><p>Searches for a line inside the Telnet server.</p>
+<p>Function that reads through the lines of a Telnet server until specified line
+is found inside the incoming messages; returns said message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TL_obj</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Telnet</span></code>) – Telnet server to send the command to.
+With PyARCL this can be done through the <a class="reference internal" href="#PyARCL.startserver" title="PyARCL.startserver"><code class="xref py py-func docutils literal notranslate"><span class="pre">startserver()</span></code></a> function.</p></li>
+<li><p><strong>line</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – String to search for in the incoming Telnet messages</p></li>
+<li><p><strong>timeout</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Number of lines to go through until function is killed and
+an Exception is raised.</p></li>
+<li><p><strong>check_exceptions</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Boolean value that checks for exceptions in the
+ARCL command lines and raises the appropriated exception in case it finds one.</p></li>
+<li><p><strong>logger</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code>) – The logger to log to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>String containing the message containing the searched line.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyARCL.onofftobool">
+<span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">onofftobool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#onofftobool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.onofftobool" title="Permalink to this definition"></a></dt>
+<dd><p>Translates ‘on’ or ‘off’ to their boolean counterpart.</p>
+<p>Function that takes a string in input and returns a boolean based on whether
+the original string was “on” or “off”.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyARCL.readline">
+<span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">readline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TL_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">GeneralLog</span> <span class="pre">(INFO)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#readline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.readline" title="Permalink to this definition"></a></dt>
+<dd><p>Reads the current line of a Telnet server and returns said line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TL_obj</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Telnet</span></code>) – Telnet server to send the command to.
+With PyARCL this can be done through the <a class="reference internal" href="#PyARCL.startserver" title="PyARCL.startserver"><code class="xref py py-func docutils literal notranslate"><span class="pre">startserver()</span></code></a> function.</p></li>
+<li><p><strong>logger</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code>) – The logger to log to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Line read.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyARCL.sanitizelogmessage">
+<span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">sanitizelogmessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#sanitizelogmessage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.sanitizelogmessage" title="Permalink to this definition"></a></dt>
+<dd><p>Sanitizes strings that need to be put inside the log.</p>
+<p>Function that takes a string that might be on multiple lines and makes it one
+line only.
+The function takes the string and checks if it ends with “rn”; if it does
+returns said string without “rn”, returns the original string otherwise.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyARCL.sendcommand">
+<span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">sendcommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TL_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">GeneralLog</span> <span class="pre">(INFO)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#sendcommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.sendcommand" title="Permalink to this definition"></a></dt>
+<dd><p>Sends an ARCL command to a mobile robot or fleet manager.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TL_obj</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Telnet</span></code>) – Telnet server to send the command to.
+With PyARCL this can be done through the <a class="reference internal" href="#PyARCL.startserver" title="PyARCL.startserver"><code class="xref py py-func docutils literal notranslate"><span class="pre">startserver()</span></code></a> function.</p></li>
+<li><p><strong>command</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The command string to send to the server.</p></li>
+<li><p><strong>logger</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code>) – The logger to log to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Nothing</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyARCL.setup_logger">
+<span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">setup_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'info'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#setup_logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.setup_logger" title="Permalink to this definition"></a></dt>
+<dd><p>Function that generates a custom logger with custom filename in the logs folder.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyARCL.slm">
+<span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">slm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyARCL.slm" title="Permalink to this definition"></a></dt>
+<dd><p>Sanitizes strings that need to be put inside the log.</p>
+<p>Function that takes a string that might be on multiple lines and makes it one
+line only.
+The function takes the string and checks if it ends with “rn”; if it does
+returns said string without “rn”, returns the original string otherwise.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyARCL.startserver">
+<span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">startserver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">HOST_IP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">HOST_PORT=7171</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;Logger</span> <span class="pre">GeneralLog</span> <span class="pre">(INFO)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#startserver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.startserver" title="Permalink to this definition"></a></dt>
+<dd><p>Function that creates a telnet object and sends the needed password through
+to open it. Standard function to use when opening a socket connection with PyARCL.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyARCL.trimmer">
+<span class="sig-prename descclassname"><span class="pre">PyARCL.</span></span><span class="sig-name descname"><span class="pre">trimmer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">':'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyARCL.html#trimmer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyARCL.trimmer" title="Permalink to this definition"></a></dt>
+<dd><p>Function used to trim a string, allows for multiple input types.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="pyarcl" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Marco Zangrandi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
